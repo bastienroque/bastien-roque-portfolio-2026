@@ -14,18 +14,18 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
             <Link href="/">
               <Button variant="green" className="h-fit">
-                Footer
+                Contact Links
               </Button>
             </Link>
 
             <div className="flex flex-row gap-2 md:gap-4">
               {footer_content.map((link) => {
                 return (
-                  <Link key={link.id} href={link.href}>
+                  <a key={link.id} href={link.href} target="_blank">
                     <Button variant={link.isGreen ? "green" : "white"}>
                       {link.label}
                     </Button>
-                  </Link>
+                  </a>
                 );
               })}
             </div>

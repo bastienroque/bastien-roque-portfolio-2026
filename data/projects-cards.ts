@@ -5,6 +5,7 @@ export const projects_card_content = [
     label: "Qui Le Demande ?",
     devType: "Full-stack",
     src: "/projects/qui-le-demande/homepage.mp4",
+    posterSrc: "/projects/qui-le-demande/homepage-poster.jpg",
     alt: "Homepage of Qui Le Demande ? showing the main functionality of the app, which is to provide a marketing hub for a French-speaking audience.",
   },
   {
@@ -13,6 +14,7 @@ export const projects_card_content = [
     label: "Random FM",
     devType: "Full-stack",
     src: "/projects/random-fm/homepage.mp4",
+    posterSrc: "/projects/random-fm/homepage-poster.jpg",
     alt: "Homepage of RandomFM showing the main functionality of the app, which is to filter radio stations by genre and country.",
   },
   {
@@ -21,6 +23,7 @@ export const projects_card_content = [
     label: "Cavaleiros da Francesinha",
     devType: "Coming soon",
     src: "",
+    posterSrc: "",
     alt: "",
   },
 ];

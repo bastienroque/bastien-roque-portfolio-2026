@@ -3,6 +3,7 @@ import { ProjectData } from "@/types";
 export const projects_content: ProjectData[] = [
   // project 1
   {
+    id: "qui-le-demande-details",
     slug: "qui-le-demande",
     label: "Qui Le Demande ?",
     devType: "Full-stack",
@@ -28,6 +29,7 @@ export const projects_content: ProjectData[] = [
             badgeTitle: "Homepage",
             badgeVariant: "green",
             src: "/projects/qui-le-demande/homepage.mp4",
+            posterSrc: "/projects/qui-le-demande/homepage-poster.jpg",
             alt: "Homepage of Qui Le Demande ? showing the main functionality of the app, which is to provide a marketing hub for a French-speaking audience.",
           },
         ],
@@ -38,7 +40,7 @@ export const projects_content: ProjectData[] = [
         badgeTitle: "Context",
         badgeVariant: "green",
         content:
-          "The goal was to engineer a high-performance digital presence and conversion hub for the Qui Le Demande ? brand, tailored specifically for a French-speaking market. Beyond projecting a premium agency aesthetic, the platform required a resilient architecture capable of driving active customer acquisition through dynamic pricing structures, interactive lead-generation workflows, and strict compliance-first cookie consent management.",
+          "Qui Le Demande? is a client project, a French Marketing agency, specialized in Ads and Web Management. They needed a site that could do more than look good: convert visitors into leads. I built and shipped it solo, from the UI to the backend logic, including an interactive budget simulator so visitors could get a rough project estimate themselves, a custom contact form with server-side validation, and GDPR-compliant cookie consent.",
       },
       {
         type: "cards",
@@ -83,6 +85,7 @@ export const projects_content: ProjectData[] = [
             badgeVariant: "green",
             overlayBadges: ["Interactive Budget Simulator"],
             src: "/projects/qui-le-demande/simulator.mp4",
+            posterSrc: "/projects/qui-le-demande/simulator-poster.jpg",
             alt: "Simulator feature of Qui Le Demande ?, showing how users can interactively simulate their budget and see potential outcomes based on their inputs.",
           },
         ],
@@ -96,7 +99,8 @@ export const projects_content: ProjectData[] = [
             badgeVariant: "green",
             overlayBadges: ["Fully custom form"],
             src: "/projects/qui-le-demande/contact-form.mp4",
-            alt: "Project 3 image",
+            posterSrc: "/projects/qui-le-demande/contact-form-poster.jpg",
+            alt: "Contact form feature of Qui Le Demande ?, showing how users can fill out a fully custom form to get in touch with the company, with real-time validation and feedback.",
           },
         ],
       },
@@ -106,7 +110,7 @@ export const projects_content: ProjectData[] = [
         badgeTitle: "Challenges",
         badgeVariant: "green",
         content:
-          "Balancing a high-fidelity, animation-rich user interface with strict performance benchmarks presented a primary architectural hurdle. Maintaining a consistent design system and modular copy structure across a multi-faceted marketing layout required rigorous component composition to keep the codebase DRY (Don't Repeat Yourself), while simultaneously managing secure, server-side form validations and transactional email routing via SendGrid without inflating client-side bundle sizes.",
+          "The interactive budget simulator and animated UI needed to feel premium without hurting load times — a real tension since Framer Motion and rich interactions can bloat bundle size fast. I kept the component structure modular and DRY across the marketing pages, and moved logic like form validation (Zod) and email sending (SendGrid) into Next.js Server Actions so none of that weight shipped to the client.",
       },
       {
         type: "media",
@@ -117,6 +121,7 @@ export const projects_content: ProjectData[] = [
             badgeVariant: "green",
             overlayBadges: ["Compliance Ready"],
             src: "/projects/qui-le-demande/cookie-banner.mp4",
+            posterSrc: "/projects/qui-le-demande/cookie-banner-poster.jpg",
             alt: "Cookie banner feature of Qui Le Demande ?, showing how the site complies with privacy regulations by providing users with clear options for managing their cookie preferences.",
           },
         ],
@@ -130,6 +135,7 @@ export const projects_content: ProjectData[] = [
             badgeVariant: "green",
             overlayBadges: ["Services Modal"],
             src: "/projects/qui-le-demande/services-modal.mp4",
+            posterSrc: "/projects/qui-le-demande/services-modal-poster.jpg",
             alt: "Services modal feature of Qui Le Demande ?, showing how users can access detailed information about the services offered by the company through an interactive modal window.",
           },
         ],
@@ -146,6 +152,7 @@ export const projects_content: ProjectData[] = [
   },
   // project 2
   {
+    id: "random-fm-details",
     slug: "random-fm",
     label: "Random FM",
     devType: "Full-stack",
@@ -170,6 +177,7 @@ export const projects_content: ProjectData[] = [
             badgeTitle: "Homepage",
             badgeVariant: "green",
             src: "/projects/random-fm/homepage.mp4",
+            posterSrc: "/projects/random-fm/homepage-poster.jpg",
             alt: "Homepage of RandomFM showing the main functionality of the app, which is to filter radio stations by genre and country.",
           },
         ],
@@ -180,7 +188,7 @@ export const projects_content: ProjectData[] = [
         badgeTitle: "Context",
         badgeVariant: "green",
         content:
-          "The goal was to build a sleek, utility-driven web application that interfaces with external music data APIs (such as Last.fm or a radio stream API) to let users instantly discover random tracks, explore deep listening histories, or surface specific play milestones. It bridges personal music passion with clean API data consumption.",
+          "Random FM started as a personal project, I wanted an easy way to discover music from around the world instead of scrolling through the same playlists. I built it end-to-end: designed the UI, wired it to the Radio Browser API for station data, and used Postgres (via Neon) with Prisma to let users save favorite stations across sessions, with Clerk handling auth so favorites persist per user.",
       },
       {
         type: "cards",
@@ -226,6 +234,7 @@ export const projects_content: ProjectData[] = [
             badgeVariant: "green",
             overlayBadges: ["Toast notifications"],
             src: "/projects/random-fm/toasts.png",
+            posterSrc: "/projects/random-fm/toasts-poster.jpg",
             alt: "Toast notifications feature of RandomFM, showing how users receive real-time feedback on their actions within the app, such as favoriting a station or encountering an error.",
           },
         ],
@@ -239,6 +248,7 @@ export const projects_content: ProjectData[] = [
             badgeVariant: "green",
             overlayBadges: ["Favorite stations"],
             src: "/projects/random-fm/saved-stations.mp4",
+            posterSrc: "/projects/random-fm/saved-stations-poster.jpg",
             alt: "Login and favorite stations feature of RandomFM, showing how users can log in and save their preferred radio stations for quick access.",
           },
         ],
@@ -249,7 +259,7 @@ export const projects_content: ProjectData[] = [
         badgeTitle: "Challenges",
         badgeVariant: "green",
         content:
-          "Handling asynchronous latency and managing state when querying external APIs that can occasionally return delayed payloads or rate-limit requests. Implemented robust loading skeletons, error states, and optimized component re-rendering to keep the UI snappy and feedback loops immediate for the user.",
+          "The Radio Browser API isn't always reliable, some stations return slow or fail entirely, and there's no guaranteed uptime. Early on this meant users would hit blank screens or long silent waits. I fixed it by adding several toast notifications instead of blank states, which kept the app feeling responsive even when the underlying data source wasn't.",
       },
       {
         type: "media",
@@ -260,6 +270,7 @@ export const projects_content: ProjectData[] = [
             badgeVariant: "green",
             overlayBadges: ["Light/Dark theme"],
             src: "/projects/random-fm/dark-light-theme.mp4",
+            posterSrc: "/projects/random-fm/dark-light-theme-poster.jpg",
             alt: "Light/Dark theme toggle feature of RandomFM, showing the app's ability to switch between light and dark modes seamlessly.",
           },
         ],

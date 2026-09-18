@@ -1,4 +1,3 @@
-import Pill from "@/components/ui/Pill";
 import { LinkSection } from "@/types";
 
 export default function LiveLinkBanner({
@@ -14,7 +13,7 @@ export default function LiveLinkBanner({
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="z-1 inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-brand-black text-brand-white font-medium"
+        className="z-1 inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-brand-black text-brand-white font-medium hover:scale-[0.95] transition-all"
       >
         <div className="z-1 relative flex items-center gap-3">{badgeTitle}</div>
         <svg
@@ -35,7 +34,7 @@ export default function LiveLinkBanner({
         href={githubUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="z-1 inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-brand-black text-brand-white font-medium"
+        className="z-1 inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-brand-black text-brand-white font-medium hover:scale-[0.95] transition-all"
       >
         <div className="z-1 relative flex items-center gap-3">
           {githubTitle}

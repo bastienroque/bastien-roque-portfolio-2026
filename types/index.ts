@@ -39,6 +39,7 @@ export interface FeatureCardsGridProps {
 
 export interface MediaItemData {
   src: string;
+  posterSrc: string;
   alt: string;
   badgeTitle?: string;
   badgeVariant?: "green" | "white";
@@ -79,6 +80,7 @@ export interface FeatureSectionProps {
 }
 
 export interface ProjectData {
+  id: string;
   slug: string;
   label: string;
   devType: string;
@@ -91,5 +93,13 @@ export interface ProjectShowcase {
   label: string;
   devType: string;
   src: string;
+  posterSrc: string;
   alt: string;
+}
+
+export interface HeroContent {
+  name: string;
+  role: string;
+  country: string;
+  techStack: string[];
 }

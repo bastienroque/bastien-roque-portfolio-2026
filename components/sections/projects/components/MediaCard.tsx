@@ -1,8 +1,11 @@
-import Pill from "@/components/ui/Pill";
+import { Heading } from "@/components/ui/Heading";
+import Shape from "@/components/ui/Shape";
 import { MediaItemData } from "@/types";
+import LazyVideo from "./LazyVideo";
 
 export default function MediaCard({
   src,
+  posterSrc,
   alt,
   badgeTitle,
   badgeVariant,
@@ -14,23 +17,22 @@ export default function MediaCard({
     <div className="w-full flex flex-col items-start gap-2">
       <div className="flex flex-col items-start justify-center gap-2">
         {badgeTitle && (
-          <Pill variant={badgeVariant} className="font-bold">
-            {badgeTitle}
-          </Pill>
+          <Heading level={2}>
+            <Shape variant={badgeVariant} className="font-bold">
+              {badgeTitle}
+            </Shape>
+          </Heading>
         )}
 
         {overlayBadges?.map((badge, index) => (
-          <Pill key={index}>{badge}</Pill>
+          <Shape key={index}>{badge}</Shape>
         ))}
       </div>
       <div className="relative min-h-[60vh] md:min-h-[75vh] w-full overflow-hidden rounded-xl border border-brand-black transition-colors bg-brand-white">
         {isVideo(src) ? (
-          <video
+          <LazyVideo
             src={src}
-            autoPlay
-            loop
-            muted
-            playsInline
+            poster={posterSrc}
             className="h-full w-full object-cover"
           />
         ) : (

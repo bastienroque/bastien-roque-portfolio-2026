@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Pill from "../ui/Pill";
+import Shape from "../ui/Shape";
 import { ProjectShowcase } from "@/types";
+import LazyVideo from "./projects/components/LazyVideo";
 
 const ProjectsSection = ({
   id,
@@ -8,16 +9,17 @@ const ProjectsSection = ({
   label,
   devType,
   src,
+  posterSrc,
   alt,
 }: ProjectShowcase) => {
   const hasImage = Boolean(src && src.trim() !== "");
   return (
-    <div id="projects" className="p-2 md:p-4 scroll-mt-30">
+    <div className="p-2 md:p-4">
       <Link key={id} href={href}>
-        <div className="min-h-[60vh] p-2 md:p-4 w-full flex flex-col md:flex-row items-center gap-2 md:gap-4 rounded-xl border border-brand-black bg-brand-yellow hover:bg-brand-green">
+        <div className="min-h-[60vh] p-2 md:p-4 w-full flex flex-col md:flex-row items-center gap-2 md:gap-4 rounded-xl border border-brand-black bg-brand-yellow hover:bg-brand-green transition-colors">
           <div className="flex flex-col items-center md:items-start">
-            <Pill className="font-bold!">{label}</Pill>
-            <Pill>{devType}</Pill>
+            <Shape className="font-bold!">{label}</Shape>
+            <Shape>{devType}</Shape>
           </div>
           <div
             className={`relative min-h-[60vh] w-full overflow-hidden rounded-xl border border-brand-black transition-colors ${
@@ -27,17 +29,9 @@ const ProjectsSection = ({
             }`}
           >
             {hasImage && (
-              // <img
-              //   src={src}
-              //   alt={alt || "Project showcase preview"}
-              //   className="h-full w-full object-fill"
-              // />
-              <video
+              <LazyVideo
                 src={src}
-                autoPlay
-                loop
-                muted
-                playsInline
+                poster={posterSrc}
                 className="h-full w-full object-cover"
               />
             )}

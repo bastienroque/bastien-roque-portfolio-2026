@@ -1,7 +1,7 @@
 import { ButtonProps } from "@/types";
 import clsx from "clsx";
 
-const Pill = ({
+const Shape = ({
   variant = "white",
   children,
   className,
@@ -27,4 +27,4 @@ const Pill = ({
   );
 };
 
-export default Pill;
+export default Shape;

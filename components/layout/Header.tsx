@@ -13,7 +13,7 @@ const Header = () => {
     <>
       {/* desktop */}
       <nav className="z-5 mt-[41.5vh] mb-84 sticky top-0 hidden md:flex items-center justify-center">
-        <div className="p-2 md:p-4 flex flex-col items-center gap-2">
+        <div className="p-2 md:p-4 flex flex-row items-center gap-4">
           <div className="flex flex-col md:flex-row gap-2 items-center">
             <Link href="/" className="h-full">
               <Button variant="green">

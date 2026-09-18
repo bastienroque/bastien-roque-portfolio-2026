@@ -12,7 +12,7 @@ const Button = ({
     className?.includes("p-0") || className?.includes("aspect-square");
 
   const base =
-    "border border-brand-black text-nowrap rounded-xl font-sans text-brand-black cursor-pointer flex items-center justify-center";
+    "border border-brand-black text-nowrap rounded-xl font-sans text-brand-black cursor-pointer flex items-center justify-center hover:scale-[0.95] active:scale-[0.85] transition-all";
 
   const paddingBase = isIconOnly ? "h-10 w-10 p-0" : "px-6 py-2 w-fit text-lg";
 
