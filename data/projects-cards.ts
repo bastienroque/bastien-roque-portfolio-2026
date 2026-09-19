@@ -31,7 +31,8 @@ export const projects_card_content = [
     shortDesc: "",
     desktopSrc: "",
     mobileSrc: "",
-    posterSrc: "",
+    posterDesktopSrc: "",
+    posterMobileSrc: "",
     alt: "",
   },
 ];
