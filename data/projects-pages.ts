@@ -26,10 +26,14 @@ export const projects_content: ProjectData[] = [
         id: "intro",
         items: [
           {
+            kind: "video",
             badgeTitle: "Homepage",
             badgeVariant: "green",
-            src: "/projects/qui-le-demande/homepage.mp4",
-            posterSrc: "/projects/qui-le-demande/homepage-poster.jpg",
+            desktopSrc: "/projects/qui-le-demande/homepage.mp4",
+            posterDesktopSrc: "/projects/qui-le-demande/homepage-poster.jpg",
+            mobileSrc: "/projects/qui-le-demande/mobile-homepage.mp4",
+            posterMobileSrc:
+              "/projects/qui-le-demande/mobile-homepage-poster.jpg",
             alt: "Homepage of Qui Le Demande ? showing the main functionality of the app, which is to provide a marketing hub for a French-speaking audience.",
           },
         ],
@@ -81,11 +85,15 @@ export const projects_content: ProjectData[] = [
         id: "feature1",
         items: [
           {
+            kind: "video",
             badgeTitle: "Feature",
             badgeVariant: "green",
             overlayBadges: ["Interactive Budget Simulator"],
-            src: "/projects/qui-le-demande/simulator.mp4",
-            posterSrc: "/projects/qui-le-demande/simulator-poster.jpg",
+            desktopSrc: "/projects/qui-le-demande/simulator.mp4",
+            posterDesktopSrc: "/projects/qui-le-demande/simulator-poster.jpg",
+            mobileSrc: "/projects/qui-le-demande/mobile-simulator.mp4",
+            posterMobileSrc:
+              "/projects/qui-le-demande/mobile-simulator-poster.jpg",
             alt: "Simulator feature of Qui Le Demande ?, showing how users can interactively simulate their budget and see potential outcomes based on their inputs.",
           },
         ],
@@ -95,11 +103,16 @@ export const projects_content: ProjectData[] = [
         id: "feature2",
         items: [
           {
+            kind: "video",
             badgeTitle: "Feature",
             badgeVariant: "green",
             overlayBadges: ["Fully custom form"],
-            src: "/projects/qui-le-demande/contact-form.mp4",
-            posterSrc: "/projects/qui-le-demande/contact-form-poster.jpg",
+            desktopSrc: "/projects/qui-le-demande/contact-form.mp4",
+            posterDesktopSrc:
+              "/projects/qui-le-demande/contact-form-poster.jpg",
+            mobileSrc: "/projects/qui-le-demande/mobile-contact-form.mp4",
+            posterMobileSrc:
+              "/projects/qui-le-demande/mobile-contact-form-poster.jpg",
             alt: "Contact form feature of Qui Le Demande ?, showing how users can fill out a fully custom form to get in touch with the company, with real-time validation and feedback.",
           },
         ],
@@ -117,11 +130,16 @@ export const projects_content: ProjectData[] = [
         id: "feature3",
         items: [
           {
+            kind: "video",
             badgeTitle: "Feature",
             badgeVariant: "green",
             overlayBadges: ["Compliance Ready"],
-            src: "/projects/qui-le-demande/cookie-banner.mp4",
-            posterSrc: "/projects/qui-le-demande/cookie-banner-poster.jpg",
+            desktopSrc: "/projects/qui-le-demande/cookie-banner.mp4",
+            posterDesktopSrc:
+              "/projects/qui-le-demande/cookie-banner-poster.jpg",
+            mobileSrc: "/projects/qui-le-demande/mobile-cookie-banner.mp4",
+            posterMobileSrc:
+              "/projects/qui-le-demande/mobile-cookie-banner-poster.jpg",
             alt: "Cookie banner feature of Qui Le Demande ?, showing how the site complies with privacy regulations by providing users with clear options for managing their cookie preferences.",
           },
         ],
@@ -131,11 +149,16 @@ export const projects_content: ProjectData[] = [
         id: "feature4",
         items: [
           {
+            kind: "video",
             badgeTitle: "Feature",
             badgeVariant: "green",
             overlayBadges: ["Services Modal"],
-            src: "/projects/qui-le-demande/services-modal.mp4",
-            posterSrc: "/projects/qui-le-demande/services-modal-poster.jpg",
+            desktopSrc: "/projects/qui-le-demande/services-modal.mp4",
+            posterDesktopSrc:
+              "/projects/qui-le-demande/services-modal-poster.jpg",
+            mobileSrc: "/projects/qui-le-demande/mobile-services-modal.mp4",
+            posterMobileSrc:
+              "/projects/qui-le-demande/mobile-services-modal-poster.jpg",
             alt: "Services modal feature of Qui Le Demande ?, showing how users can access detailed information about the services offered by the company through an interactive modal window.",
           },
         ],
@@ -174,10 +197,13 @@ export const projects_content: ProjectData[] = [
         id: "intro",
         items: [
           {
+            kind: "video",
             badgeTitle: "Homepage",
             badgeVariant: "green",
-            src: "/projects/random-fm/homepage.mp4",
-            posterSrc: "/projects/random-fm/homepage-poster.jpg",
+            desktopSrc: "/projects/random-fm/homepage.mp4",
+            posterDesktopSrc: "/projects/random-fm/homepage-poster.jpg",
+            mobileSrc: "/projects/random-fm/mobile-homepage.mp4",
+            posterMobileSrc: "/projects/random-fm/mobile-homepage-poster.jpg",
             alt: "Homepage of RandomFM showing the main functionality of the app, which is to filter radio stations by genre and country.",
           },
         ],
@@ -230,12 +256,13 @@ export const projects_content: ProjectData[] = [
         id: "feature1",
         items: [
           {
+            kind: "image",
             badgeTitle: "Feature",
             badgeVariant: "green",
             overlayBadges: ["Toast notifications"],
-            src: "/projects/random-fm/toasts.png",
-            posterSrc: "/projects/random-fm/toasts-poster.jpg",
-            alt: "Toast notifications feature of RandomFM, showing how users receive real-time feedback on their actions within the app, such as favoriting a station or encountering an error.",
+            desktopSrc: "/projects/random-fm/toasts.png",
+            mobileSrc: "/projects/random-fm/mobile-toasts.png",
+            alt: "Toast notifications feature of RandomFM...",
           },
         ],
       },
@@ -244,11 +271,16 @@ export const projects_content: ProjectData[] = [
         id: "feature2",
         items: [
           {
+            kind: "video",
             badgeTitle: "Feature",
             badgeVariant: "green",
             overlayBadges: ["Favorite stations"],
-            src: "/projects/random-fm/saved-stations.mp4",
-            posterSrc: "/projects/random-fm/saved-stations-poster.jpg",
+            desktopSrc: "/projects/random-fm/favorite-stations.mp4",
+            posterDesktopSrc:
+              "/projects/random-fm/favorite-stations-poster.jpg",
+            mobileSrc: "/projects/random-fm/mobile-favorite-stations.mp4",
+            posterMobileSrc:
+              "/projects/random-fm/mobile-favorite-stations-poster.jpg",
             alt: "Login and favorite stations feature of RandomFM, showing how users can log in and save their preferred radio stations for quick access.",
           },
         ],
@@ -266,11 +298,15 @@ export const projects_content: ProjectData[] = [
         id: "feature3",
         items: [
           {
+            kind: "video",
             badgeTitle: "Feature",
             badgeVariant: "green",
             overlayBadges: ["Light/Dark theme"],
-            src: "/projects/random-fm/dark-light-theme.mp4",
-            posterSrc: "/projects/random-fm/dark-light-theme-poster.jpg",
+            desktopSrc: "/projects/random-fm/dark-light-theme.mp4",
+            posterDesktopSrc: "/projects/random-fm/dark-light-theme-poster.jpg",
+            mobileSrc: "/projects/random-fm/mobile-dark-light-theme.mp4",
+            posterMobileSrc:
+              "/projects/random-fm/mobile-dark-light-theme-poster.jpg",
             alt: "Light/Dark theme toggle feature of RandomFM, showing the app's ability to switch between light and dark modes seamlessly.",
           },
         ],

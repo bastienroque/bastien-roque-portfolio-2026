@@ -1,16 +1,28 @@
 "use client";
 
+import { LazyVideoProps } from "@/types";
 import { useEffect, useRef, useState } from "react";
 
-type LazyVideoProps = {
-  src: string;
-  poster: string;
-  className?: string;
-};
-
-export default function LazyVideo({ src, poster, className }: LazyVideoProps) {
+export default function LazyVideo({
+  desktopSrc,
+  mobileSrc,
+  posterDesktopSrc,
+  posterMobileSrc,
+  className,
+  alt,
+}: LazyVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
 
   useEffect(() => {
     const el = videoRef.current;
@@ -42,14 +54,20 @@ export default function LazyVideo({ src, poster, className }: LazyVideoProps) {
   return (
     <video
       ref={videoRef}
-      poster={poster}
+      aria-label={alt}
+      poster={isMobile ? posterMobileSrc : posterDesktopSrc}
       loop
       muted
       playsInline
       preload="none"
       className={className}
     >
-      {isInView && <source src={src} type="video/mp4" />}
+      {isInView && (
+        <>
+          <source src={mobileSrc} media="(max-width: 767px)" type="video/mp4" />
+          <source src={desktopSrc} type="video/mp4" />
+        </>
+      )}
     </video>
   );
 }

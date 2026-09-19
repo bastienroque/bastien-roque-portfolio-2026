@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Button from "../ui/Button";
 import { footer_content } from "@/data/footer";
 
@@ -12,19 +11,11 @@ const Footer = () => {
         <div className="w-full px-2 h-[25vh] border-t border-brand-black flex flex-row items-end justify-center">
           {" "}
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-            <Link href="/">
-              <Button variant="green" className="h-fit">
-                Contact Links
-              </Button>
-            </Link>
-
             <div className="flex flex-row gap-2 md:gap-4">
               {footer_content.map((link) => {
                 return (
                   <a key={link.id} href={link.href} target="_blank">
-                    <Button variant={link.isGreen ? "green" : "white"}>
-                      {link.label}
-                    </Button>
+                    <Button variant="green">{link.label}</Button>
                   </a>
                 );
               })}

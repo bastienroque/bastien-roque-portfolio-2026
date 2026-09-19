@@ -37,14 +37,27 @@ export interface FeatureCardsGridProps {
   section: CardsSection;
 }
 
-export interface MediaItemData {
-  src: string;
-  posterSrc: string;
-  alt: string;
-  badgeTitle?: string;
-  badgeVariant?: "green" | "white";
-  overlayBadges?: string[];
-}
+export type MediaItemData =
+  | {
+      kind: "video";
+      desktopSrc: string;
+      mobileSrc: string;
+      posterDesktopSrc: string;
+      posterMobileSrc: string;
+      alt: string;
+      badgeTitle?: string;
+      badgeVariant?: "white" | "green";
+      overlayBadges?: string[];
+    }
+  | {
+      kind: "image";
+      desktopSrc: string;
+      mobileSrc: string;
+      alt: string;
+      badgeTitle?: string;
+      badgeVariant?: "white" | "green";
+      overlayBadges?: string[];
+    };
 
 export interface MediaSection extends BaseSectionData {
   type: "media";
@@ -92,8 +105,11 @@ export interface ProjectShowcase {
   href: string;
   label: string;
   devType: string;
-  src: string;
-  posterSrc: string;
+  shortDesc: string;
+  desktopSrc: string;
+  posterDesktopSrc: string;
+  mobileSrc: string;
+  posterMobileSrc: string;
   alt: string;
 }
 
@@ -103,3 +119,12 @@ export interface HeroContent {
   country: string;
   techStack: string[];
 }
+
+export type LazyVideoProps = {
+  desktopSrc: string;
+  mobileSrc: string;
+  posterDesktopSrc: string;
+  posterMobileSrc: string;
+  className?: string;
+  alt: string;
+};

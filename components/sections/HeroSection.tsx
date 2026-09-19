@@ -14,7 +14,7 @@ const HeroSection = () => {
             Available for work
           </div>
 
-          <Heading level={3} className="text-4xl md:text-6xl font-black">
+          <Heading level={1} className="text-4xl md:text-6xl font-black">
             {name}
           </Heading>
 
@@ -23,12 +23,12 @@ const HeroSection = () => {
           </Shape>
         </div>
 
-        <div className="relative flex flex-col gap-4 md:w-5/12 backdrop-blur-sm p-2 md:p-4 rounded-xl border border-black">
+        <div className="relative flex flex-col gap-4 md:w-5/12 backdrop-blur-sm p-2 md:p-4 rounded-xl border border-black bg-brand-green">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
             <span className="text-sm font-black uppercase text-nowrap">
               Based in
             </span>
-            <Shape className="bg-white border border-black font-bold">
+            <Shape className="bg-brand-white border border-black font-bold">
               {country}
             </Shape>
           </div>
@@ -38,7 +38,7 @@ const HeroSection = () => {
             <ul className="flex flex-wrap gap-2">
               {techStack.map((tech) => (
                 <li key={tech}>
-                  <Shape className="bg-white border border-black font-semibold hover:-translate-y-1 hover:bg-black hover:text-white transition-all duration-200 cursor-default inline-block">
+                  <Shape className="bg-brand-white border border-black font-semibold">
                     {tech}
                   </Shape>
                 </li>

@@ -3,7 +3,7 @@ export const navbar_content = [
   {
     id: 2,
     href: "/",
-    label: "Portfolio Website",
+    label: "Portfolio",
     isGreen: true,
   },
 ];
