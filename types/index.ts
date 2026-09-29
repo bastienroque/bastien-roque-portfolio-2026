@@ -113,11 +113,27 @@ export interface ProjectShowcase {
   alt: string;
 }
 
+export type TechItem = {
+  name: string;
+  note?: string;
+};
+
+export type TechCategory = {
+  id: string;
+  label: string;
+  scope: string;
+  items: TechItem[];
+};
+
+export type TechStackProps = {
+  categories: TechCategory[];
+};
+
 export interface HeroContent {
   name: string;
   role: string;
   country: string;
-  techStack: string[];
+  techStack: TechCategory[];
 }
 
 export type LazyVideoProps = {

@@ -21,7 +21,7 @@ const ProjectsSection = ({
       <Link key={id} href={href}>
         <div className="min-h-[60vh] p-2 md:p-4 w-full flex flex-col md:flex-row items-center gap-2 md:gap-4 rounded-xl border border-brand-black bg-brand-white hover:bg-brand-yellow transition-colors">
           <div className="w-full md:w-1/4 flex flex-col items-center md:items-start justify-between self-stretch gap-8 md:gap-2">
-            <div className="flex flex-col gap-2">
+            <div className="w-full flex flex-col gap-2">
               <Button variant="green" className="font-bold! w-full">
                 {label}
               </Button>
