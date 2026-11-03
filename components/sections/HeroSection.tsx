@@ -1,43 +1,96 @@
+import Link from "next/link";
+import {
+  ArrowDown,
+  Binoculars,
+  CheckCircle,
+  EnvelopeSimple,
+  MapPin,
+} from "@phosphor-icons/react/dist/ssr";
 import { hero_content } from "@/data/hero";
+import Button from "../ui/Button";
 import Shape from "../ui/Shape";
 import { Heading } from "../ui/Heading";
-import TechStack from "./TechStack";
+
+const tones = [
+  "bg-brand-green text-black",
+  "bg-brand-white text-black",
+  "bg-brand-black text-brand-white",
+];
 
 const HeroSection = () => {
-  const { name, role, country, techStack } = hero_content;
+  const { name, roles, country } = hero_content;
 
   return (
-    <div id="about" className="p-2 md:p-4 scroll-mt-30">
-      <div className="relative container mx-auto min-h-[70vh] p-2 md:p-12 w-full overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8 rounded-2xl border border-black bg-brand-yellow">
-        <div className="relative flex flex-col items-start gap-2 md:gap-4 md:w-1/2">
-          <div className="flex items-center gap-2 px-3 py-1 text-xs font-bold uppercase tracking-wider bg-white border border-black rounded-full">
-            <span className="h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse motion-reduce:animate-none" />
+    <section id="about" className="scroll-mt-30 p-2 md:p-4">
+      <div className="grid min-h-[60svh] items-center gap-6 rounded-2xl border border-black bg-brand-yellow p-4 md:grid-cols-2 md:gap-8 md:p-12">
+        <div className="flex flex-col items-start gap-4">
+          <div className="flex items-center gap-2 rounded-full border border-black bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider">
+            <CheckCircle
+              size={16}
+              weight="fill"
+              className="text-green-600"
+              aria-hidden="true"
+            />
             Available for work
           </div>
 
-          <Heading level={1} className="text-4xl md:text-6xl font-black">
+          <Heading
+            level={1}
+            size="lg"
+            className="text-4xl font-black md:text-6xl"
+          >
             {name}
           </Heading>
 
-          <Shape className="w-fit bg-brand-green! text-black font-extrabold! border border-black">
-            {role}
+          <Shape className="w-fit border border-black bg-brand-white font-bold">
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin size={18} weight="bold" aria-hidden="true" />
+              {country}
+            </span>
           </Shape>
+
+          {/* Mobile: full-width stacked buttons (equal edges, easy to tap).
+              From sm up they go back to a row. */}
+          <div className="mt-2 flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+            <Link href="#projects" className="block">
+              <Button variant="green" className="w-full justify-center!">
+                <span className="inline-flex items-center gap-2">
+                  <ArrowDown size={18} weight="bold" aria-hidden="true" />
+                  See my work
+                </span>
+              </Button>
+            </Link>
+            <Link href="#contact" className="block">
+              <Button variant="white" className="w-full justify-center!">
+                <span className="inline-flex items-center gap-2">
+                  <EnvelopeSimple size={18} weight="bold" aria-hidden="true" />
+                  Get in touch
+                </span>
+              </Button>
+            </Link>
+          </div>
         </div>
 
-        <div className="relative flex flex-col gap-4 md:w-1/2 backdrop-blur-sm p-2 md:p-4 rounded-xl border border-black bg-brand-green">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
-            <span className="text-sm font-black uppercase text-nowrap">
-              Based in
-            </span>
-            <Shape className="bg-brand-white border border-black font-bold">
-              {country}
-            </Shape>
-          </div>
-
-          <TechStack categories={techStack} />
+        <div className="flex flex-col items-start gap-3 border-t border-black pt-6 md:items-center md:border-t-0 md:pt-0">
+          <p className="flex w-fit items-center gap-2 rounded-full border border-black bg-brand-white px-4 py-2 text-sm font-black uppercase tracking-wider">
+            <Binoculars size={18} weight="bold" aria-hidden="true" />
+            Open to roles like
+          </p>
+          <ul className="flex flex-wrap items-center justify-start gap-2 md:justify-center md:gap-3">
+            {roles.map((role, i) => (
+              <li
+                key={role}
+                className={`max-w-full rounded-full border border-black px-3 py-1.5 text-sm font-black leading-none whitespace-nowrap md:px-4 md:py-2 md:text-lg ${
+                  tones[i % tones.length]
+                }`}
+              >
+                {role}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

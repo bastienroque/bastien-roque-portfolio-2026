@@ -9,10 +9,11 @@ export default function MainLayout({
   return (
     <>
       <Header />
-      <main>
-        {children}
-        <div className="-z-10 fixed bottom-0 bg-brand-green w-full h-[50vh] border-t border-brand-black" />
-      </main>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed bottom-0 -z-10 h-(--horizon) w-full border-t border-brand-black bg-brand-green"
+      />
+      <main>{children}</main>
       <Footer />
     </>
   );

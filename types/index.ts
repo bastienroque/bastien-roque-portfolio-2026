@@ -42,8 +42,8 @@ export type MediaItemData =
       kind: "video";
       desktopSrc: string;
       mobileSrc: string;
-      posterDesktopSrc: string;
-      posterMobileSrc: string;
+      posterDesktopSrc?: string;
+      posterMobileSrc?: string;
       alt: string;
       badgeTitle?: string;
       badgeVariant?: "white" | "green";
@@ -122,19 +122,18 @@ export type TechCategory = {
   id: string;
   label: string;
   scope: string;
-  items: TechItem[];
+  items: { name: string }[];
 };
 
-export type TechStackProps = {
-  categories: TechCategory[];
-};
+export type TechStackProps = { categories: TechCategory[] };
 
-export interface HeroContent {
+export type LookingForPoint = { label: string; value: string };
+
+export type HeroContent = {
   name: string;
-  role: string;
+  roles: string[];
   country: string;
-  techStack: TechCategory[];
-}
+};
 
 export type LazyVideoProps = {
   desktopSrc: string;

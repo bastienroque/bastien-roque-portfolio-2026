@@ -2,70 +2,17 @@ import { HeroContent } from "@/types";
 
 export const hero_content: HeroContent = {
   name: "Bastien Roque",
-  role: "Full-Stack Developer",
-  country: "Lisbon, Portugal",
-  techStack: [
-    {
-      id: "languages",
-      label: "Languages",
-      scope: "The foundations I build everything on.",
-      items: [
-        { name: "HTML" },
-        { name: "CSS" },
-        { name: "JavaScript" },
-        { name: "TypeScript" },
-      ],
-    },
-    {
-      id: "frontend",
-      label: "Frontend",
-      scope: "Interfaces, styling and components.",
-      items: [
-        { name: "React" },
-        { name: "Next.js" },
-        { name: "Tailwind CSS" },
-        { name: "shadcn/ui" },
-        { name: "Lucide Icons" },
-      ],
-    },
-    {
-      id: "backend",
-      label: "Backend & data",
-      scope: "APIs, databases, auth and transactional services.",
-      items: [
-        { name: "Node.js" },
-        { name: "Express" },
-        { name: "MongoDB" },
-        { name: "Supabase" },
-        { name: "Clerk" },
-        { name: "Resend" },
-        { name: "Zod" },
-      ],
-    },
-    {
-      id: "infrastructure",
-      label: "Infra & workflow",
-      scope: "Version control, containers and deployment.",
-      items: [
-        { name: "Git" },
-        { name: "GitHub" },
-        { name: "Docker" },
-        { name: "Vercel" },
-        { name: "Google Cloud Platform" },
-      ],
-    },
-    {
-      id: "tooling",
-      label: "Design & tooling",
-      scope: "Design, API testing, analytics and AI assistance.",
-      items: [
-        { name: "Figma" },
-        { name: "Framer" },
-        { name: "Postman" },
-        { name: "Google Tag Manager" },
-        { name: "Google Analytics" },
-        { name: "Claude" },
-      ],
-    },
+  roles: [
+    "Full-Stack Developer",
+    "Front-End Developer",
+    "Back-End Developer",
+    "Software Engineer",
+    "Web Developer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript Developer",
+    "UI Engineer",
+    "Product Engineer",
   ],
+  country: "Lisbon, Portugal",
 };

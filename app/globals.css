@@ -3,6 +3,7 @@
 :root {
   --background: #ededed;
   --foreground: #171717;
+  --horizon: 50svh;
 }
 
 @theme inline {

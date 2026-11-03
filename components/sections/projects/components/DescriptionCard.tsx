@@ -7,16 +7,22 @@ export default function DescriptionCard({
   badgeTitle,
   badgeVariant,
 }: DescriptionSection) {
+  const paragraphs = content.split(/\n{2,}/);
+
   return (
-    <div className="relative w-full p-4 md:p-8 flex flex-col items-center gap-4 md:gap-4 rounded-xl border border-brand-black bg-brand-white">
+    <div className="flex w-full flex-col items-center gap-4 rounded-xl border border-brand-black bg-brand-white p-4 md:p-8">
       {badgeTitle && (
         <Heading level={2}>
           <Shape variant={badgeVariant}>{badgeTitle}</Shape>
         </Heading>
       )}
 
-      <div className="prose text-brand-black text-start text-base md:text-lg">
-        <p className="whitespace-pre-line">{content}</p>
+      <div className="flex max-w-prose flex-col gap-4 text-start text-base text-brand-black md:text-lg">
+        {paragraphs.map((paragraph, i) => (
+          <p key={i} className="whitespace-pre-line">
+            {paragraph}
+          </p>
+        ))}
       </div>
     </div>
   );

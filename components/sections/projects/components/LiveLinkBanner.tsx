@@ -1,60 +1,61 @@
 import { LinkSection } from "@/types";
 
+const linkClasses =
+  "relative z-1 inline-flex items-center gap-2 rounded-xl bg-brand-black px-8 py-3 font-medium text-brand-white transition-transform hover:scale-[0.95] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-black motion-reduce:transition-none motion-reduce:hover:scale-100";
+
+const ExternalLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={linkClasses}
+  >
+    <span>{children}</span>
+    <span className="sr-only">(opens in a new tab)</span>
+    {/* diagonal arrow = leaves the site */}
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M7 17 17 7M7 7h10v10"
+      />
+    </svg>
+  </a>
+);
+
 export default function LiveLinkBanner({
   url,
   githubUrl,
   badgeTitle,
   githubTitle,
-  badgeVariant,
 }: LinkSection) {
   return (
-    <div className="relative w-full p-4 md:p-8 flex flex-col md:flex-row items-center justify-center gap-4 rounded-xl border border-brand-black bg-brand-green">
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="z-1 inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-brand-black text-brand-white font-medium hover:scale-[0.95] transition-all"
-      >
-        <div className="z-1 relative flex items-center gap-3">{badgeTitle}</div>
-        <svg
-          className="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          />
-        </svg>
-      </a>
-      <a
-        href={githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="z-1 inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-brand-black text-brand-white font-medium hover:scale-[0.95] transition-all"
-      >
-        <div className="z-1 relative flex items-center gap-3">
-          {githubTitle}
-        </div>
-        <svg
-          className="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          />
-        </svg>
-      </a>
-      <div className="hidden md:block absolute left-0 h-full aspect-square bg-brand-yellow border rounded-full" />
-      <div className="hidden md:block absolute right-0 h-full aspect-square bg-brand-yellow border rounded-full" />
+    <div className="relative flex w-full flex-col items-center justify-center gap-4 rounded-xl border border-brand-black bg-brand-green p-4 md:flex-row md:p-8">
+      <ExternalLink href={url}>{badgeTitle}</ExternalLink>
+      {/* private/client projects may have no repo: don't render a dead link */}
+      {githubUrl && <ExternalLink href={githubUrl}>{githubTitle}</ExternalLink>}
+
+      <div
+        aria-hidden="true"
+        className="absolute left-0 hidden aspect-square h-full rounded-full border border-brand-black bg-brand-yellow md:block"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute right-0 hidden aspect-square h-full rounded-full border border-brand-black bg-brand-yellow md:block"
+      />
     </div>
   );
 }

@@ -1,13 +1,3 @@
-export const navbar_content = [
-  { id: 1, href: "/", label: "2026", isGreen: false },
-  {
-    id: 2,
-    href: "/",
-    label: "Portfolio",
-    isGreen: true,
-  },
-];
-
 export const navbar_links = [
   { id: 3, href: "/#about", label: "About", isGreen: false },
   {
@@ -16,8 +6,9 @@ export const navbar_links = [
     label: "Projects",
     isGreen: false,
   },
+  { id: 5, href: "/#stack", label: "Stack", isGreen: false },
   {
-    id: 5,
+    id: 6,
     href: "/#contact",
     label: "Contact",
     isGreen: false,
