@@ -138,8 +138,8 @@ export type HeroContent = {
 export type LazyVideoProps = {
   desktopSrc: string;
   mobileSrc: string;
-  posterDesktopSrc: string;
-  posterMobileSrc: string;
+  posterDesktopSrc?: string;
+  posterMobileSrc?: string;
   className?: string;
   alt: string;
 };
