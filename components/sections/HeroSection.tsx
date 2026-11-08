@@ -1,97 +1,46 @@
-import Link from "next/link";
-import {
-  ArrowDown,
-  Binoculars,
-  CheckCircle,
-  EnvelopeSimple,
-  MapPin,
-} from "@phosphor-icons/react/dist/ssr";
-import { hero_content } from "@/data/hero";
-import Button from "../ui/Button";
-import Shape from "../ui/Shape";
-import { Heading } from "../ui/Heading";
+import React from "react";
+import { PROFILE } from "@/lib/data/profile";
+import { HeroCanvas } from "../audio/HeroCanvas";
+import { DrumPads } from "../audio/DrumPads";
+import { ModeGate } from "../providers/ModeProvider";
 
-const tones = [
-  "bg-brand-green text-black",
-  "bg-brand-white text-black",
-  "bg-brand-black text-brand-white",
-];
+export const HeroSection: React.FC = () => (
+  <header id="top" className="stage relative h-svh min-h-160 overflow-hidden">
+    <HeroCanvas />
 
-const HeroSection = () => {
-  const { name, roles, country } = hero_content;
-
-  return (
-    <section id="about" className="scroll-mt-30 p-2 md:p-4">
-      <div className="grid min-h-[60svh] items-center gap-6 rounded-2xl border border-black bg-brand-yellow p-4 md:grid-cols-2 md:gap-8 md:p-12">
-        <div className="flex flex-col items-start gap-4">
-          <div className="flex items-center gap-2 rounded-full border border-black bg-white px-3 py-1 text-xs font-bold uppercase tracking-wider">
-            <CheckCircle
-              size={16}
-              weight="fill"
-              className="text-green-600"
-              aria-hidden="true"
-            />
-            Available for work
-          </div>
-
-          <Heading
-            level={1}
-            size="lg"
-            className="text-4xl font-black md:text-6xl"
-          >
-            {name}
-          </Heading>
-
-          <Shape className="w-fit border border-black bg-brand-white font-bold">
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin size={18} weight="bold" aria-hidden="true" />
-              {country}
-            </span>
-          </Shape>
-
-          {/* Mobile: full-width stacked buttons (equal edges, easy to tap).
-              From sm up they go back to a row. */}
-          <div className="mt-2 flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
-            <Link href="#projects" className="block">
-              <Button variant="green" className="w-full justify-center!">
-                <span className="inline-flex items-center gap-2">
-                  <ArrowDown size={18} weight="bold" aria-hidden="true" />
-                  See my work
-                </span>
-              </Button>
-            </Link>
-            <Link href="#contact" className="block">
-              <Button variant="white" className="w-full justify-center!">
-                <span className="inline-flex items-center gap-2">
-                  <EnvelopeSimple size={18} weight="bold" aria-hidden="true" />
-                  Get in touch
-                </span>
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-start gap-3 border-t border-black pt-6 md:items-center md:border-t-0 md:pt-0">
-          <p className="flex w-fit items-center gap-2 rounded-full border border-black bg-brand-white px-4 py-2 text-sm font-black uppercase tracking-wider">
-            <Binoculars size={18} weight="bold" aria-hidden="true" />
-            Open to roles like
-          </p>
-          <ul className="flex flex-wrap items-center justify-start gap-2 md:justify-center md:gap-3">
-            {roles.map((role, i) => (
-              <li
-                key={role}
-                className={`max-w-full rounded-full border border-black px-3 py-1.5 text-sm font-black leading-none whitespace-nowrap md:px-4 md:py-2 md:text-lg ${
-                  tones[i % tones.length]
-                }`}
-              >
-                {role}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="absolute inset-x-0 bottom-14 px-5 md:left-[clamp(20px,5vw,64px)] md:right-auto md:max-w-160 flex flex-col gap-4 pointer-events-none z-10 [&>*]:pointer-events-auto">
+      <div className="self-start font-mono text-xs uppercase tracking-[0.08em] border border-paper-line rounded-full px-3.5 py-1 bg-paper-glass backdrop-blur-md">
+        Developer · Drummer · {PROFILE.status}
       </div>
-    </section>
-  );
-};
+      <h1 className="text-[clamp(44px,11.5vw,104px)] font-bold tracking-tight leading-none drop-shadow-md">
+        Code with
+        <br />a pocket.
+      </h1>
+      <p className="max-w-[46ch] text-[clamp(16px,2.2vw,19px)] text-paper-muted">
+        I&apos;m {PROFILE.name}, a {PROFILE.role.toLowerCase()} in {PROFILE.location.split(",")[0]}. I
+        build web products end to end, with a drummer&apos;s ear for timing.
+      </p>
 
-export default HeroSection;
+      <ModeGate show="quick">
+        <div className="flex flex-wrap gap-3 mt-2">
+          <a
+            href="#work"
+            className="inline-flex items-center min-h-12 px-6 rounded-full bg-paper text-ink font-medium text-[15px] hover:-translate-y-0.5 transition"
+          >
+            See the work
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center min-h-12 px-6 rounded-full border border-paper-line font-medium text-[15px] hover:border-paper transition"
+          >
+            Get in touch
+          </a>
+        </div>
+      </ModeGate>
+
+      <ModeGate show="jam">
+        <DrumPads />
+      </ModeGate>
+    </div>
+  </header>
+);
