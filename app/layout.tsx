@@ -1,32 +1,52 @@
-import { Instrument_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ModeProvider } from "@/components/providers/ModeProvider";
+import { JamProvider } from "@/components/providers/JamProvider";
+import { TopBar } from "@/components/layout/TopBar";
+import { ArrivalChooser } from "@/components/layout/ArrivalChooser";
+import { PROFILE } from "@/lib/data/profile";
+import { SITE_URL } from "@/lib/site";
 
-const instrumentSans = Instrument_Sans({
-  variable: "--font-instrument-sans",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
-export const metadata = {
-  metadataBase: new URL("https://bastien-roque-portfolio-2026.vercel.app"),
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
+  openGraph: { type: "website", siteName: PROFILE.name },
   title: {
-    default: "Bastien Roque - 2026 Portfolio",
-    template: "%s | Bastien Roque - Portfolio",
+    default: `${PROFILE.name} · ${PROFILE.role} & drummer`,
+    template: `%s · ${PROFILE.name}`,
   },
-  description: "Bastien Roque - 2026 Portfolio",
-  openGraph: {
-    title: "Bastien Roque - 2026 Portfolio",
-    description: "Bastien Roque - 2026 Portfolio",
-    url: "https://bastien-roque-portfolio-2026.vercel.app",
-    siteName: "Bastien Roque - Portfolio",
-    locale: "en_EN",
-    type: "website",
-  },
+  description: `${PROFILE.name} is a ${PROFILE.role.toLowerCase()} in ${PROFILE.location}. Portfolio, case studies and a page you can play like a drum kit.`,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#02180e",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-80 focus:bg-fg focus:text-bg focus:px-4 focus:py-2 focus:rounded-full"
+        >
+          Skip to content
+        </a>
+        <ModeProvider>
+          <JamProvider>
+            <TopBar />
+            <ArrivalChooser />
+            {children}
+          </JamProvider>
+        </ModeProvider>
+      </body>
     </html>
   );
 }

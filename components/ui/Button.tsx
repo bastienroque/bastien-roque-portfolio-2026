@@ -1,35 +1,26 @@
-import { ButtonProps } from "@/types";
-import clsx from "clsx";
+import React from "react";
 
-const Button = ({
-  variant = "white",
-  children,
-  className,
-  disabled,
-  ...props
-}: ButtonProps) => {
-  const isIconOnly =
-    className?.includes("p-0") || className?.includes("aspect-square");
+type Variant = "solid" | "ghost" | "active";
 
-  const base =
-    "border border-brand-black text-start rounded-xl font-sans text-brand-black cursor-pointer flex items-start justify-start hover:bg-brand-yellow hover:scale-[0.95] active:scale-[0.85] transition-all";
+const base =
+  "inline-flex items-center justify-center gap-2 min-h-12 px-6 rounded-full font-medium text-[15px] border transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-fg disabled:opacity-50";
 
-  const paddingBase = isIconOnly ? "h-10 w-10 p-0" : "px-6 py-2 w-fit text-lg";
-
-  const variants = {
-    white: "bg-brand-white font-medium",
-    green: "bg-brand-green font-black",
-  };
-
-  return (
-    <button
-      disabled={disabled}
-      className={clsx(base, paddingBase, variants[variant], className)}
-      {...props}
-    >
-      {children}
-    </button>
-  );
+const variants: Record<Variant, string> = {
+  solid: "bg-fg text-bg border-fg hover:-translate-y-0.5 hover:shadow-lg",
+  ghost: "bg-transparent text-fg border-line hover:border-fg",
+  active: "bg-accent text-on-accent border-accent",
 };
 
-export default Button;
+export const buttonClass = (variant: Variant = "solid", className = "") =>
+  `${base} ${variants[variant]} ${className}`;
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: Variant;
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = "solid",
+  className = "",
+  type = "button",
+  ...props
+}) => <button type={type} className={buttonClass(variant, className)} {...props} />;
