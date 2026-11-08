@@ -60,7 +60,8 @@ export const ArrivalChooser: React.FC = () => {
       {count === null ? (
         <div
           aria-hidden="true"
-          className="logo-mask w-[clamp(180px,42vw,340px)] aspect-135/74 bg-linear-to-br from-accent to-accent-soft"
+          // logo.png is only 135×74 px: kept small so it stays sharp on retina screens.
+          className="logo-mask w-22 md:w-26 aspect-135/74 bg-linear-to-br from-accent to-accent-soft"
         />
       ) : (
         <div
