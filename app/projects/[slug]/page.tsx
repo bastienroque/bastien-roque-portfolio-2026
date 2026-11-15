@@ -7,7 +7,7 @@ import { Video } from "@/components/ui/Video";
 import { posterOf } from "@/lib/media";
 import { Eyebrow } from "@/components/ui/Section";
 import { buttonClass } from "@/components/ui/Button";
-import { RecordSides } from "./RecordSides";
+import { DisciplineTags } from "@/components/ui/DisciplineTags";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: Props) {
 
   const index = PROJECTS.indexOf(project);
   const next = PROJECTS[(index + 1) % PROJECTS.length];
-  const track = (n: number) => String(n).padStart(2, "0");
+  const num = (n: number) => String(n).padStart(2, "0");
 
   return (
     <main id="main" className="px-5 pt-28 pb-24">
@@ -53,12 +53,13 @@ export default async function ProjectPage({ params }: Props) {
         <header className="mt-8 grid lg:grid-cols-[3fr_2fr] gap-10 items-end">
           <div>
             <Eyebrow>
-              Track {track(index + 1)} · {project.kind} · {project.year}
+              {project.kind} · {project.year}
             </Eyebrow>
             <h1 className="mt-3 text-[clamp(40px,8vw,88px)] font-bold tracking-tight leading-[0.95] text-balance">
               {project.title}
             </h1>
             <p className="mt-5 text-[clamp(18px,2.4vw,22px)] text-muted max-w-[44ch]">{project.tagline}</p>
+            <DisciplineTags items={project.disciplines} className="mt-5" />
             <div className="flex flex-wrap gap-3 mt-7">
               <a href={project.liveUrl} target="_blank" rel="noreferrer" className={buttonClass("solid")}>
                 Live site ↗
@@ -86,44 +87,43 @@ export default async function ProjectPage({ params }: Props) {
           <Video {...project.cover} />
         </figure>
 
-        <RecordSides
-          story={
-            <div className="grid gap-10 md:grid-cols-2">
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight">Context</h2>
-                <p className="mt-3 text-muted leading-relaxed">{project.context}</p>
+        <section className="mt-16 grid gap-10 md:grid-cols-2" aria-label="Story">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight">Context</h2>
+            <p className="mt-3 text-muted leading-relaxed">{project.context}</p>
+          </div>
+          {project.challenges && (
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Challenges</h2>
+              <p className="mt-3 text-muted leading-relaxed">{project.challenges}</p>
+            </div>
+          )}
+        </section>
+
+        <section className="mt-16" aria-labelledby="built-with">
+          <Eyebrow>Built with</Eyebrow>
+          <h2 id="built-with" className="sr-only">Built with</h2>
+          <div className="mt-4 grid gap-4 grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))]">
+            {project.stack.map((g) => (
+              <div key={g.group} className="bg-surface border border-line rounded-card p-6">
+                <h3 className="font-mono text-xs uppercase tracking-[0.08em] text-muted">{g.group}</h3>
+                <dl className="mt-4 flex flex-col gap-2.5">
+                  {g.items.map((i) => (
+                    <div key={i.label} className="flex justify-between gap-4 border-b border-line pb-2.5 last:border-0">
+                      <dt className="text-muted text-sm">{i.label}</dt>
+                      <dd className="text-sm font-medium text-right">{i.value}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
-              {project.challenges && (
-                <div>
-                  <h2 className="text-2xl font-semibold tracking-tight">Challenges</h2>
-                  <p className="mt-3 text-muted leading-relaxed">{project.challenges}</p>
-                </div>
-              )}
-            </div>
-          }
-          build={
-            <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))]">
-              {project.stack.map((g) => (
-                <div key={g.group} className="bg-surface border border-line rounded-card p-6">
-                  <h2 className="font-mono text-xs uppercase tracking-[0.08em] text-muted">{g.group}</h2>
-                  <dl className="mt-4 flex flex-col gap-2.5">
-                    {g.items.map((i) => (
-                      <div key={i.label} className="flex justify-between gap-4 border-b border-line pb-2.5 last:border-0">
-                        <dt className="text-muted text-sm">{i.label}</dt>
-                        <dd className="text-sm font-medium text-right">{i.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              ))}
-            </div>
-          }
-        />
+            ))}
+          </div>
+        </section>
 
         {project.media.length > 0 && (
-          <section className="mt-20" aria-labelledby="tracklist">
-            <Eyebrow>Tracklist</Eyebrow>
-            <h2 id="tracklist" className="mt-3 text-[clamp(28px,5vw,48px)] font-semibold tracking-tight">
+          <section className="mt-20" aria-labelledby="features">
+            <Eyebrow>Features</Eyebrow>
+            <h2 id="features" className="mt-3 text-[clamp(28px,5vw,48px)] font-semibold tracking-tight">
               Features in motion
             </h2>
             <div className="grid gap-6 mt-8 md:grid-cols-2">
@@ -136,7 +136,7 @@ export default async function ProjectPage({ params }: Props) {
                     <Video {...m} />
                   </div>
                   <figcaption className="flex items-baseline gap-3">
-                    <span className="font-mono text-xs text-muted">{track(i + 1)}</span>
+                    <span className="font-mono text-xs text-muted">{num(i + 1)}</span>
                     <span className="font-medium">{m.title}</span>
                     <span className="font-mono text-[11px] uppercase tracking-widest text-muted ml-auto">{m.tag}</span>
                   </figcaption>
@@ -147,7 +147,7 @@ export default async function ProjectPage({ params }: Props) {
         )}
 
         <nav aria-label="Next project" className="mt-24 pt-8 border-t border-line">
-          <Eyebrow>Next track</Eyebrow>
+          <Eyebrow>Next project</Eyebrow>
           <Link
             href={`/projects/${next.slug}`}
             className="mt-2 inline-block text-[clamp(32px,6vw,64px)] font-semibold tracking-tight hover:text-accent-fg transition-colors"

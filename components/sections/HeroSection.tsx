@@ -1,46 +1,53 @@
 import React from "react";
-import { PROFILE } from "@/lib/data/profile";
-import { HeroCanvas } from "../audio/HeroCanvas";
-import { DrumPads } from "../audio/DrumPads";
-import { ModeGate } from "../providers/ModeProvider";
+import { HERO_INTRO, PROFILE } from "@/lib/data/profile";
 
+const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
+
+/** Short, text-led intro: who, what, and straight on to the work. */
 export const HeroSection: React.FC = () => (
-  <header id="top" className="stage relative h-svh min-h-160 overflow-hidden">
-    <HeroCanvas />
-
-    <div className="absolute inset-x-0 bottom-14 px-5 md:left-[clamp(20px,5vw,64px)] md:right-auto md:max-w-160 flex flex-col gap-4 pointer-events-none z-10 [&>*]:pointer-events-auto">
-      <div className="self-start font-mono text-xs uppercase tracking-[0.08em] border border-paper-line rounded-full px-3.5 py-1 bg-paper-glass backdrop-blur-md">
-        Developer · Drummer · {PROFILE.status}
-      </div>
-      <h1 className="text-[clamp(44px,11.5vw,104px)] font-bold tracking-tight leading-none drop-shadow-md">
-        Code with
-        <br />a pocket.
-      </h1>
-      <p className="max-w-[46ch] text-[clamp(16px,2.2vw,19px)] text-paper-muted">
-        I&apos;m {PROFILE.name}, a {PROFILE.role.toLowerCase()} in {PROFILE.location.split(",")[0]}. I
-        build web products end to end, with a drummer&apos;s ear for timing.
+  <header id="top" className="stage relative overflow-hidden px-5 pt-36 pb-20 md:pt-44 md:pb-28">
+    <div className="max-w-290 mx-auto">
+      <p className="rise font-mono text-xs uppercase tracking-[0.08em] text-paper-muted" style={delay(0)}>
+        {PROFILE.name} · {PROFILE.location} ·{" "}
+        <span className="text-accent">{PROFILE.status}</span>
       </p>
 
-      <ModeGate show="quick">
-        <div className="flex flex-wrap gap-3 mt-2">
-          <a
-            href="#work"
-            className="inline-flex items-center min-h-12 px-6 rounded-full bg-paper text-ink font-medium text-[15px] hover:-translate-y-0.5 transition"
-          >
-            See the work
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center min-h-12 px-6 rounded-full border border-paper-line font-medium text-[15px] hover:border-paper transition"
-          >
-            Get in touch
-          </a>
-        </div>
-      </ModeGate>
+      <h1
+        className="rise mt-5 max-w-[14ch] text-[clamp(44px,9vw,104px)] font-bold tracking-tight leading-[0.95] text-balance"
+        style={delay(80)}
+      >
+        {PROFILE.tagline}
+      </h1>
 
-      <ModeGate show="jam">
-        <DrumPads />
-      </ModeGate>
+      <p className="rise mt-6 max-w-[52ch] text-[clamp(17px,2.2vw,20px)] text-paper-muted text-pretty" style={delay(160)}>
+        {HERO_INTRO}
+      </p>
+
+      <ul className="rise flex flex-wrap gap-2 mt-7" style={delay(240)} aria-label="Skills">
+        {PROFILE.keywords.map((k) => (
+          <li
+            key={k}
+            className="font-mono text-xs uppercase tracking-[0.08em] border border-paper-line rounded-full px-3.5 py-1.5 bg-paper-glass"
+          >
+            {k}
+          </li>
+        ))}
+      </ul>
+
+      <div className="rise flex flex-wrap gap-3 mt-9" style={delay(320)}>
+        <a
+          href="#work"
+          className="inline-flex items-center min-h-12 px-6 rounded-full bg-accent text-on-accent font-medium text-[15px] transition hover:-translate-y-0.5"
+        >
+          See the projects ↓
+        </a>
+        <a
+          href="#contact"
+          className="inline-flex items-center min-h-12 px-6 rounded-full border border-paper-line font-medium text-[15px] transition hover:border-paper"
+        >
+          Get in touch
+        </a>
+      </div>
     </div>
   </header>
 );

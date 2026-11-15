@@ -4,21 +4,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PROFILE } from "@/lib/data/profile";
-import { ModeSwitch } from "./ModeSwitch";
-import { useMode } from "../providers/ModeProvider";
 
-interface NavItem {
-  label: string;
-  href: string;
-  /** Only shown in jam mode (the section only exists there). */
-  jamOnly?: boolean;
-}
-
-const NAV: NavItem[] = [
-  { label: "About", href: "/#about" },
-  { label: "Logic", href: "/#logic", jamOnly: true },
-  { label: "Stack", href: "/#stack" },
+const NAV = [
   { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
+  { label: "Stack", href: "/#stack" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -26,15 +16,14 @@ const glass =
   "border border-line bg-[color-mix(in_srgb,var(--surface)_80%,transparent)] backdrop-blur-md";
 
 /** Which home-page section is under the reading line (40% down the viewport). */
-function useActiveSection(enabled: boolean, items: NavItem[]) {
+function useActiveSection(enabled: boolean) {
   const [active, setActive] = useState<string | null>(null);
-  const key = items.map((n) => n.href).join();
   useEffect(() => {
     if (!enabled) return;
-    const ids = ["top", ...key.split(",").map((href) => href.slice(2))];
-    const sections = ids.map((id) => document.getElementById(id)).filter(
-      (el): el is HTMLElement => el !== null,
-    );
+    const ids = ["top", ...NAV.map((n) => n.href.slice(2))];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
@@ -43,16 +32,14 @@ function useActiveSection(enabled: boolean, items: NavItem[]) {
     );
     sections.forEach((s) => io.observe(s));
     return () => io.disconnect();
-  }, [enabled, key]);
+  }, [enabled]);
   return enabled ? active : null;
 }
 
 export const TopBar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { mode } = useMode();
-  const items = NAV.filter((n) => !n.jamOnly || mode === "jam");
-  const active = useActiveSection(pathname === "/", items);
+  const active = useActiveSection(pathname === "/");
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -80,7 +67,7 @@ export const TopBar: React.FC = () => {
         </Link>
 
         <nav aria-label="Main" className={`hidden md:flex gap-1 p-1 rounded-full ${glass}`}>
-          {items.map((n) => (
+          {NAV.map((n) => (
             <Link
               key={n.href}
               href={n.href}
@@ -93,7 +80,12 @@ export const TopBar: React.FC = () => {
         </nav>
 
         <div className="flex gap-2 items-center">
-          <ModeSwitch />
+          <a
+            href={`mailto:${PROFILE.email}`}
+            className="hidden md:inline-flex items-center min-h-11 px-5 rounded-full bg-accent text-on-accent text-sm font-medium transition hover:-translate-y-0.5"
+          >
+            Let&apos;s talk
+          </a>
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
@@ -122,7 +114,7 @@ export const TopBar: React.FC = () => {
           >
             Close
           </button>
-          {items.map((n) => (
+          {NAV.map((n) => (
             <Link
               key={n.href}
               href={n.href}

@@ -13,6 +13,7 @@ export const PROJECTS: Project[] = [
     year: "2026",
     kind: "Client platform",
     role: "Solo developer & designer",
+    disciplines: ["Design", "Development"],
     color: "#E8A317",
     facts: [
       { label: "Client", value: "Cavaleiros da Francesinha" },
@@ -108,6 +109,7 @@ export const PROJECTS: Project[] = [
     year: "2026",
     kind: "Client website",
     role: "Solo developer & designer",
+    disciplines: ["Design", "Development"],
     color: "#E8648C",
     facts: [
       { label: "Client", value: "Qui Le Demande ?" },
@@ -187,6 +189,7 @@ export const PROJECTS: Project[] = [
     year: "2026",
     kind: "Internal tool",
     role: "Solo developer & designer",
+    disciplines: ["Design", "Development"],
     color: "#16A394",
     facts: [
       { label: "Type", value: "Tooling" },
@@ -234,6 +237,7 @@ export const PROJECTS: Project[] = [
     year: "2026",
     kind: "Personal project",
     role: "Solo developer & designer",
+    disciplines: ["Design", "Development"],
     color: "#5B63F0",
     facts: [
       { label: "Type", value: "Personal" },

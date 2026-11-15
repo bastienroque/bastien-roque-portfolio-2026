@@ -1,15 +1,18 @@
 import React from "react";
 import { PROJECTS } from "@/lib/data/projects";
 import { ProjectCard } from "../modules/ProjectCard";
-import { Eyebrow, Heading, Section } from "../ui/Section";
+import { Eyebrow, Heading, Lead, Section } from "../ui/Section";
 
 export const WorkSection: React.FC = () => (
   <Section id="work">
-    <Eyebrow>Selected work · Pick one for a solo</Eyebrow>
+    <Eyebrow>Selected work</Eyebrow>
     <Heading>Projects</Heading>
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] gap-5 mt-10">
-      {PROJECTS.map((p, i) => (
-        <ProjectCard key={p.slug} project={p} index={i} />
+    <Lead>
+      Client platforms, sites and tools I designed and built end to end, from the look and motion to the code.
+    </Lead>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+      {PROJECTS.map((p) => (
+        <ProjectCard key={p.slug} project={p} />
       ))}
     </div>
   </Section>

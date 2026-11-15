@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { DRUM_COLORS } from "@/lib/audio/instruments";
-import { addRing, setRingHandler } from "@/lib/audio/visuals";
-import { useMode } from "../providers/ModeProvider";
-import { useJam } from "../providers/JamProvider";
+import { DRUMS } from "@/lib/audio/instruments";
+import { setRingHandler } from "@/lib/audio/visuals";
 
 interface Particle {
   x: number;
@@ -27,14 +25,12 @@ interface Ring {
 
 /**
  * The BR logo drawn with particles. The pointer pushes them around, and every
- * drum hit sends a ripple through them. In jam mode, tapping the logo plays
+ * drum hit sends a ripple through them. Tapping the logo plays
  * kick (left half) or snare (right half).
  */
-export const HeroCanvas: React.FC = () => {
+export const HeroCanvas: React.FC<{ onHit: (drum: number, x: number, y: number) => void }> = ({ onHit }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointer = useRef({ x: -999, y: -999 });
-  const { mode } = useMode();
-  const { fireHit } = useJam();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -58,20 +54,13 @@ export const HeroCanvas: React.FC = () => {
       canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+      // Centred in the upper part of the page, above the pads.
       const ratio = 74 / 135;
-      if (W >= 900) {
-        // Wide: logo on the right half, clear of the headline on the left.
-        const w = Math.min(W * 0.42, 680, (H - 160) / ratio);
-        const h = w * ratio;
-        box = { x: W - w - Math.max(32, W * 0.05), y: Math.max(90, (H - h) / 2 - 20), w, h };
-      } else {
-        // Narrow: logo in the space above the text block.
-        const top = 76;
-        const avail = Math.max(110, H - top - 400);
-        const w = Math.min(W * 0.9, avail * 0.92 / ratio);
-        const h = w * ratio;
-        box = { x: (W - w) / 2, y: top + (avail - h) / 2, w, h };
-      }
+      const top = 70;
+      const area = Math.max(140, H * 0.58 - top);
+      const w = Math.min(W * 0.82, 720, (area * 0.9) / ratio);
+      const h = w * ratio;
+      box = { x: (W - w) / 2, y: top + (area - h) / 2, w, h };
 
       P = mask.map(([u, v]) => {
         const tx = box.x + u * box.w;
@@ -86,7 +75,7 @@ export const HeroCanvas: React.FC = () => {
       // Without coordinates, each drum ripples from its own spot across the logo.
       const px = x ?? box.x + box.w * (0.12 + (i % 5) * 0.19);
       const py = y ?? box.y + box.h * 0.55;
-      rings.push({ x: px, y: py, r: 8, a: 0.3 + v * 0.6, s: 5 + v * 9, c: DRUM_COLORS[i % 5] });
+      rings.push({ x: px, y: py, r: 8, a: 0.3 + v * 0.6, s: 5 + v * 9, c: DRUMS[i % DRUMS.length].color });
       if (reduced) return;
       for (const p of P) {
         const dx = p.x - px;
@@ -190,8 +179,7 @@ export const HeroCanvas: React.FC = () => {
       onPointerDown={(e) => {
         const { x, y, w } = local(e);
         const zone = x < w / 2 ? 0 : 1;
-        if (mode === "jam") fireHit(zone, 0.85, x, y);
-        else addRing(zone, 0.6, x, y);
+        onHit(zone, x, y);
       }}
       className="absolute inset-0 w-full h-full touch-pan-y z-0"
     />
