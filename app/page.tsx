@@ -1,11 +1,8 @@
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { LogicSection } from "@/components/sections/LogicSection";
-import { StackSection } from "@/components/sections/StackSection";
 import { WorkSection } from "@/components/sections/WorkSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { StackSection } from "@/components/sections/StackSection";
 import { ContactSection } from "@/components/sections/ContactSection";
-import { TransportBar } from "@/components/audio/TransportBar";
-import { ModeGate } from "@/components/providers/ModeProvider";
 import { PROFILE } from "@/lib/data/profile";
 import { SITE_URL } from "@/lib/site";
 
@@ -15,11 +12,13 @@ const personJsonLd = {
   "@type": "Person",
   name: PROFILE.name,
   jobTitle: PROFILE.role,
+  knowsAbout: PROFILE.keywords,
   url: SITE_URL,
   address: { "@type": "PostalAddress", addressLocality: PROFILE.location.split(",")[0] },
   sameAs: PROFILE.links.map((l) => l.href),
 };
 
+/** Projects first: a short intro, the work, then who I am and how I build. */
 export default function HomePage() {
   return (
     <>
@@ -29,17 +28,11 @@ export default function HomePage() {
       />
       <HeroSection />
       <main id="main">
-        <AboutSection />
-        <ModeGate show="jam">
-          <LogicSection />
-        </ModeGate>
-        <StackSection />
         <WorkSection />
+        <AboutSection />
+        <StackSection />
         <ContactSection />
       </main>
-      <ModeGate show="jam">
-        <TransportBar />
-      </ModeGate>
     </>
   );
 }

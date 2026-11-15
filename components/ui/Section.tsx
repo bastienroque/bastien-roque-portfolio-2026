@@ -33,7 +33,7 @@ export const Heading: React.FC<{ children: React.ReactNode; as?: "h1" | "h2" }> 
   children,
   as: Tag = "h2",
 }) => (
-  <Tag className="mt-3 text-[clamp(36px,8.5vw,80px)] font-semibold tracking-tight leading-none text-balance">
+  <Tag className="mt-3 text-[clamp(32px,6vw,56px)] font-semibold tracking-tight leading-[1.02] text-balance">
     {children}
   </Tag>
 );

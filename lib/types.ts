@@ -1,54 +1,21 @@
-// ---------- Audio ----------
-
-export type MemberRole = "dr" | "ba" | "cp" | "pd" | "ld" | "hn" | "pc";
-
-/** [oscillator type, lowpass cutoff Hz, attack s, gain] */
-export type Waveform = [OscillatorType, number, number, number];
-
-export interface Member {
-  name: string;
-  role: MemberRole;
-  style: string;
-  instrument: string;
-  waveform?: Waveform;
-}
-
-export interface Band {
-  style: string;
-  label: string;
-  feel: string;
-  color: string;
-  scope: string;
-  members: Member[];
-}
-
-export interface MeterConfig {
-  Pulse: number;
-  Units: number;
-  kick: number[];
-  snare: number[];
-  grid: number[];
-}
-
-export interface AudioEvent {
-  time: number;
-  velocity: number;
-  type: string;
-  duration: number;
-  note?: number | number[];
-}
-
 // ---------- Content ----------
 
 export interface Profile {
   name: string;
   initials: string;
+  /** Job title, used in metadata and structured data. */
   role: string;
+  /** The one-line positioning shown in the hero. */
+  tagline: string;
+  /** Skills shown as keywords around the site. */
+  keywords: string[];
   location: string;
   status: string;
   email: string;
   links: { label: string; href: string }[];
 }
+
+export type Discipline = "Design" | "Motion" | "Development";
 
 export interface ProjectMedia {
   title: string;
@@ -65,6 +32,8 @@ export interface Project {
   year: string;
   kind: string;
   role: string;
+  /** What Bastien did on it, shown as tags on the card and page. */
+  disciplines: Discipline[];
   facts: { label: string; value: string }[];
   context: string;
   challenges?: string;
@@ -76,14 +45,12 @@ export interface Project {
   color: string;
 }
 
-export interface Feature {
-  title: string;
-  description: string;
-  /** Where on the site this effect lives. */
-  target: {
-    href: string;
-    label: string;
-    /** Play a silent visual demo on the hero logo after scrolling there. */
-    demo?: "left-right" | "ripple";
-  };
+/** One position on the funk band stage plan: a stack category and its tools. */
+export interface StagePosition {
+  id: "drums" | "bass" | "keys" | "guitar" | "percussion" | "horns" | "vocals";
+  instrument: string;
+  category: string;
+  /** Why this category plays this part. */
+  part: string;
+  tools: string[];
 }

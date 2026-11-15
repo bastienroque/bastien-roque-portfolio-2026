@@ -1,7 +1,7 @@
 import React from "react";
 import { PROFILE } from "@/lib/data/profile";
 import { CopyEmail } from "./CopyEmail";
-import { ChangeModeButton } from "../layout/ChangeModeButton";
+import Link from "next/link";
 
 export const ContactSection: React.FC = () => (
   <section
@@ -12,7 +12,7 @@ export const ContactSection: React.FC = () => (
       <div className="font-mono text-xs uppercase tracking-[0.08em] text-paper-muted">
         Contact
       </div>
-      <h2 className="mt-3 text-[clamp(36px,8.5vw,80px)] font-semibold tracking-tight leading-none">
+      <h2 className="mt-3 text-[clamp(36px,7vw,64px)] font-semibold tracking-tight leading-none">
         Let&apos;s have a jam.
       </h2>
       <p className="max-w-[56ch] mt-4.5 text-[clamp(16px,2.2vw,19px)] text-paper-muted">
@@ -40,7 +40,12 @@ export const ContactSection: React.FC = () => (
         <span className="font-mono text-xs uppercase tracking-[0.08em] text-paper-muted">
           © {new Date().getFullYear()} {PROFILE.name}
         </span>
-        <ChangeModeButton />
+        <Link
+          href="/play"
+          className="font-medium text-sm underline underline-offset-4 opacity-70 hover:opacity-100 min-h-11 inline-flex items-center px-2.5"
+        >
+          Also a drummer: play the kit →
+        </Link>
       </footer>
     </div>
   </section>

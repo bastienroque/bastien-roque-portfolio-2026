@@ -105,31 +105,64 @@ button {
 .stage {
   color: var(--color-paper);
   background:
-    radial-gradient(60% 50% at 18% 0%, rgba(29, 211, 123, 0.28), transparent 70%),
-    radial-gradient(50% 45% at 92% 28%, rgba(182, 247, 212, 0.12), transparent 70%),
+    radial-gradient(
+      60% 50% at 18% 0%,
+      rgba(29, 211, 123, 0.28),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 45% at 92% 28%,
+      rgba(182, 247, 212, 0.12),
+      transparent 70%
+    ),
     var(--color-ink);
 }
 
-/*
- * Spotlight: places the Logic cards link to. Arriving through a #link
- * pulses a green outline around the control so you see what to try.
- */
-.spot {
-  scroll-margin-top: 7rem;
-  border-radius: 18px;
-  outline: 3px solid transparent;
-  outline-offset: 10px;
-}
-.spot:target {
-  animation: spot 2.2s ease-out;
-}
-@keyframes spot {
-  0%,
-  45% {
-    outline-color: #1dd37b;
+/* Entrance motion: content rises into place on load. Stagger with --d. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
-  100% {
-    outline-color: transparent;
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Stack stage plan: a funk band seen from above,  stage at the top. */
+@media (min-width: 768px) {
+  .stage-plan {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      "bass drums keys"
+      "guitar percussion horns"
+      ". vocals .";
+  }
+  .stage-plan > [data-pos="bass"] {
+    grid-area: bass;
+  }
+  .stage-plan > [data-pos="drums"] {
+    grid-area: drums;
+  }
+  .stage-plan > [data-pos="keys"] {
+    grid-area: keys;
+  }
+  .stage-plan > [data-pos="guitar"] {
+    grid-area: guitar;
+  }
+  .stage-plan > [data-pos="percussion"] {
+    grid-area: percussion;
+  }
+  .stage-plan > [data-pos="horns"] {
+    grid-area: horns;
+  }
+  .stage-plan > [data-pos="vocals"] {
+    grid-area: vocals;
   }
 }
 
