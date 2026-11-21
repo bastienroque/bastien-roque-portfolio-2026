@@ -10,7 +10,7 @@ export const DisciplineTags: React.FC<{ items: Discipline[]; className?: string 
     {items.map((d) => (
       <li
         key={d}
-        className="font-mono text-[11px] uppercase tracking-[0.08em] rounded-full px-2.5 py-1 border border-line text-muted"
+        className="text-xs lowercase rounded-md px-2 py-1 border border-line text-muted"
       >
         {d}
       </li>

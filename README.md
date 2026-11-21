@@ -1,3 +1,3 @@
 # Personal Portfolio
 
-**`🚀 FullStack Developer`**
+**`🚀 Full-stack developer`**

@@ -4,10 +4,8 @@ export const PROFILE: Profile = {
   name: "Bastien Roque",
   initials: "BR",
   role: "Full-stack developer",
-  tagline: "Full-stack developer who designs.",
-  keywords: ["Full-stack", "Front-end", "Back-end"],
   location: "Lisbon, Portugal",
-  status: "Open to work",
+  timeZone: "Europe/Lisbon",
   email: "bastien.mroque@gmail.com",
   links: [
     { label: "GitHub", href: "https://github.com/bastienroque" },
@@ -15,12 +13,13 @@ export const PROFILE: Profile = {
   ],
 };
 
-// TODO(content): rewrite in your own voice.
-export const HERO_INTRO =
-  "I design, animate and build web products end to end, from the first sketch to the final interface, the API and the database.";
-
-// TODO(content): rewrite in your own voice.
-export const ABOUT = [
-  "I've done a lot of design and motion design, so my projects start with how they look, feel and move, before the first line of code. Then I build them end to end, usually solo, for small teams who need one person to own the whole thing.",
-  "Off screen, I play drums. Timing, dynamics and knowing which note to accent turn out to matter just as much in an interface.",
+export const ALSO = [
+  "drummer",
+  "motion designer",
+  "customer care manager",
+  "technical support",
+  "part-time nerd",
 ];
+
+export const ABOUT =
+  "Thanks to considerable experience in making people (clients and bosses) happy, I take guesses on what people tell me they need and it has been working out.";

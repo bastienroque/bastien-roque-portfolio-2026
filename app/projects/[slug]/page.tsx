@@ -46,8 +46,8 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <main id="main" className="px-5 pt-28 pb-24">
       <div className="max-w-290 mx-auto">
-        <Link href="/#work" className="font-mono text-xs uppercase tracking-[0.08em] text-muted hover:text-fg">
-          ← All projects
+        <Link href="/#work" className="text-sm text-dim hover:text-accent-deep transition-colors">
+          cd ../ (all projects)
         </Link>
 
         <header className="mt-8 grid lg:grid-cols-[3fr_2fr] gap-10 items-end">
@@ -55,10 +55,10 @@ export default async function ProjectPage({ params }: Props) {
             <Eyebrow>
               {project.kind} · {project.year}
             </Eyebrow>
-            <h1 className="mt-3 text-[clamp(40px,8vw,88px)] font-bold tracking-tight leading-[0.95] text-balance">
+            <h1 className="mt-3 text-[clamp(34px,7vw,72px)] font-semibold tracking-[-0.04em] leading-[1.02] text-balance">
               {project.title}
             </h1>
-            <p className="mt-5 text-[clamp(18px,2.4vw,22px)] text-muted max-w-[44ch]">{project.tagline}</p>
+            <p className="mt-5 text-[clamp(16px,2.2vw,19px)] leading-relaxed text-muted max-w-[48ch]">{project.tagline}</p>
             <DisciplineTags items={project.disciplines} className="mt-5" />
             <div className="flex flex-wrap gap-3 mt-7">
               <a href={project.liveUrl} target="_blank" rel="noreferrer" className={buttonClass("solid")}>
@@ -73,7 +73,7 @@ export default async function ProjectPage({ params }: Props) {
           <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 border-t border-line pt-4 text-[15px]">
             {[{ label: "Role", value: project.role }, ...project.facts].map((f) => (
               <React.Fragment key={f.label}>
-                <dt className="font-mono text-xs uppercase tracking-[0.08em] text-muted pt-1">{f.label}</dt>
+                <dt className="text-xs text-dim lowercase pt-1">{f.label}</dt>
                 <dd>{f.value}</dd>
               </React.Fragment>
             ))}
@@ -81,20 +81,19 @@ export default async function ProjectPage({ params }: Props) {
         </header>
 
         <figure
-          className="mt-12 aspect-16/10 rounded-card overflow-hidden shadow-card"
-          style={{ backgroundColor: project.color }}
+          className="mt-12 aspect-16/10 rounded-md overflow-hidden border border-line bg-bg"
         >
           <Video {...project.cover} />
         </figure>
 
         <section className="mt-16 grid gap-10 md:grid-cols-2" aria-label="Story">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Context</h2>
+            <h2 className="text-xl font-semibold tracking-[-0.03em]">Context</h2>
             <p className="mt-3 text-muted leading-relaxed">{project.context}</p>
           </div>
           {project.challenges && (
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight">Challenges</h2>
+              <h2 className="text-xl font-semibold tracking-[-0.03em]">Challenges</h2>
               <p className="mt-3 text-muted leading-relaxed">{project.challenges}</p>
             </div>
           )}
@@ -105,8 +104,8 @@ export default async function ProjectPage({ params }: Props) {
           <h2 id="built-with" className="sr-only">Built with</h2>
           <div className="mt-4 grid gap-4 grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))]">
             {project.stack.map((g) => (
-              <div key={g.group} className="bg-surface border border-line rounded-card p-6">
-                <h3 className="font-mono text-xs uppercase tracking-[0.08em] text-muted">{g.group}</h3>
+              <div key={g.group} className="bg-surface border border-line rounded-md p-6">
+                <h3 className="text-xs text-accent-deep lowercase">{g.group}</h3>
                 <dl className="mt-4 flex flex-col gap-2.5">
                   {g.items.map((i) => (
                     <div key={i.label} className="flex justify-between gap-4 border-b border-line pb-2.5 last:border-0">
@@ -123,22 +122,21 @@ export default async function ProjectPage({ params }: Props) {
         {project.media.length > 0 && (
           <section className="mt-20" aria-labelledby="features">
             <Eyebrow>Features</Eyebrow>
-            <h2 id="features" className="mt-3 text-[clamp(28px,5vw,48px)] font-semibold tracking-tight">
+            <h2 id="features" className="mt-3 text-[clamp(26px,4.5vw,40px)] font-semibold tracking-[-0.03em]">
               Features in motion
             </h2>
             <div className="grid gap-6 mt-8 md:grid-cols-2">
               {project.media.map((m, i) => (
                 <figure key={m.src} className="flex flex-col gap-3">
                   <div
-                    className="aspect-16/10 rounded-card overflow-hidden border border-line"
-                    style={{ backgroundColor: project.color }}
+                    className="aspect-16/10 rounded-md overflow-hidden border border-line bg-bg"
                   >
                     <Video {...m} />
                   </div>
                   <figcaption className="flex items-baseline gap-3">
-                    <span className="font-mono text-xs text-muted">{num(i + 1)}</span>
+                    <span className="text-xs text-dim">{num(i + 1)}</span>
                     <span className="font-medium">{m.title}</span>
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-muted ml-auto">{m.tag}</span>
+                    <span className="text-xs text-dim lowercase ml-auto">{m.tag}</span>
                   </figcaption>
                 </figure>
               ))}
@@ -150,7 +148,7 @@ export default async function ProjectPage({ params }: Props) {
           <Eyebrow>Next project</Eyebrow>
           <Link
             href={`/projects/${next.slug}`}
-            className="mt-2 inline-block text-[clamp(32px,6vw,64px)] font-semibold tracking-tight hover:text-accent-fg transition-colors"
+            className="mt-2 inline-block text-[clamp(32px,6vw,64px)] font-semibold tracking-[-0.03em] hover:text-accent-deep transition-colors"
           >
             {next.title} →
           </Link>

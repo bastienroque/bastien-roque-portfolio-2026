@@ -1,6 +1,5 @@
 import { Project } from "../types";
 
-// Frames are always 16:10, so the desktop recording serves every screen size.
 const media = (dir: string, file: string) => ({
   src: `/projects/${dir}/${file}.desktop.mp4`,
 });
@@ -14,7 +13,6 @@ export const PROJECTS: Project[] = [
     kind: "Client platform",
     role: "Solo developer & designer",
     disciplines: ["Design", "Development"],
-    color: "#E8A317",
     facts: [
       { label: "Client", value: "Cavaleiros da Francesinha" },
       { label: "Languages", value: "EN / PT / FR" },
@@ -110,7 +108,6 @@ export const PROJECTS: Project[] = [
     kind: "Client website",
     role: "Solo developer & designer",
     disciplines: ["Design", "Development"],
-    color: "#E8648C",
     facts: [
       { label: "Client", value: "Qui Le Demande ?" },
       { label: "Market", value: "France" },
@@ -190,7 +187,6 @@ export const PROJECTS: Project[] = [
     kind: "Internal tool",
     role: "Solo developer & designer",
     disciplines: ["Design", "Development"],
-    color: "#16A394",
     facts: [
       { label: "Type", value: "Tooling" },
       { label: "Market", value: "France" },
@@ -238,7 +234,6 @@ export const PROJECTS: Project[] = [
     kind: "Personal project",
     role: "Solo developer & designer",
     disciplines: ["Design", "Development"],
-    color: "#5B63F0",
     facts: [
       { label: "Type", value: "Personal" },
       { label: "Industry", value: "Music" },

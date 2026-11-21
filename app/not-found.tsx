@@ -2,29 +2,26 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="stage min-h-svh flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
-      <div className="relative z-10 max-w-lg flex flex-col items-center gap-6">
-        <span className="font-mono text-xs uppercase tracking-[0.08em] border border-paper-line rounded-full px-4 py-1.5 text-paper-muted">
-          404 · Out of time
-        </span>
-        <h1 className="text-[clamp(100px,25vw,220px)] font-bold tracking-tight leading-none bg-linear-to-br from-accent via-paper to-accent-soft bg-clip-text text-transparent select-none">
+    <main id="main" className="min-h-svh bg-bg flex items-center px-5 pt-16">
+      <div className="max-w-290 w-full mx-auto">
+        <p className="text-sm text-dim">
+          <span className="text-accent-deep">$</span> cd {"<this page>"}
+        </p>
+        <p className="mt-2 text-sm text-muted">
+          bash: cd: no such file or directory
+        </p>
+        <h1 className="mt-8 text-[clamp(80px,20vw,180px)] font-semibold tracking-tighter leading-none text-accent-deep">
           404
         </h1>
-        <div>
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Dropped the beat.</h2>
-          <p className="mt-2 text-paper-muted leading-relaxed">
-            The page you&apos;re looking for skipped a bar, or doesn&apos;t exist in this arrangement.
-          </p>
-        </div>
+        <p className="mt-4 max-w-[48ch] text-muted">
+          This page doesn&apos;t exist, or it moved.
+        </p>
         <Link
           href="/"
-          className="inline-flex items-center min-h-12 px-8 rounded-full bg-paper text-ink font-medium text-[15px] transition hover:-translate-y-0.5"
+          className="inline-flex items-center mt-8 min-h-11 px-5 rounded-md bg-accent text-on-accent text-sm font-medium transition-colors hover:bg-accent-deep hover:text-white"
         >
-          ← Back to the top
+          cd ~ (home)
         </Link>
-      </div>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[11px] text-paper-muted tracking-[0.08em] uppercase">
-        Bar 00 · Beat 0 · Rest
       </div>
     </main>
   );

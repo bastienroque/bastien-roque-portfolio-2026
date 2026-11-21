@@ -50,7 +50,7 @@ export const Video: React.FC<VideoProps> = ({ src, alt, className = "" }) => {
       playsInline
       preload="none"
       aria-label={alt}
-      className={`block w-full h-full object-cover bg-ink ${className}`}
+      className={`block w-full h-full object-cover bg-bg ${className}`}
     />
   );
 };

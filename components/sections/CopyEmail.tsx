@@ -20,12 +20,13 @@ export const CopyEmail: React.FC<{ email: string }> = ({ email }) => {
       <button
         type="button"
         onClick={copy}
-        className="block w-full mt-8 min-h-21 font-semibold text-[clamp(22px,6.4vw,56px)] leading-none tracking-[-0.04em] bg-paper-glass border border-paper-line rounded-card px-6 py-4.5 text-left break-all transition hover:bg-[rgba(242,239,233,0.12)] hover:border-paper"
+        className="group block w-full mt-8 min-h-20 font-semibold text-[clamp(18px,4.6vw,44px)] leading-tight tracking-[-0.04em] bg-bg border border-line rounded-md px-5 py-4 text-left break-all transition-colors hover:border-accent-deep"
       >
+        <span className="text-accent-deep">&gt; </span>
         {email}
       </button>
-      <div className="font-mono text-xs text-paper-muted mt-3.5" aria-live="polite">
-        {copied ? "Copied to clipboard" : "Tap to copy the email"}
+      <div className="text-xs text-dim mt-3" aria-live="polite">
+        {copied ? <span className="text-accent-deep">✓ copied to clipboard</span> : "click to copy the email"}
       </div>
     </>
   );
