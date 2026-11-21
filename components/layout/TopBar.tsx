@@ -12,8 +12,7 @@ const NAV = [
   { label: "Contact", href: "/#contact" },
 ];
 
-const glass =
-  "border border-line bg-[color-mix(in_srgb,var(--surface)_80%,transparent)] backdrop-blur-md";
+const box = "rounded-md border border-line bg-bg";
 
 /** Which home-page section is under the reading line (40% down the viewport). */
 function useActiveSection(enabled: boolean) {
@@ -43,7 +42,8 @@ export const TopBar: React.FC = () => {
 
   useEffect(() => {
     if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    const onKey = (e: KeyboardEvent) =>
+      e.key === "Escape" && setMenuOpen(false);
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -54,47 +54,55 @@ export const TopBar: React.FC = () => {
 
   return (
     <>
-      <div className="fixed inset-x-0 top-0 z-50 flex justify-between items-center gap-2 p-3.5 pointer-events-none [&>*]:pointer-events-auto">
-        <Link
-          href="/"
-          aria-label={`${PROFILE.name}, home`}
-          className={`group rounded-full px-4 min-h-11 flex items-center ${glass}`}
-        >
-          <span
-            aria-hidden="true"
-            className="logo-mask block h-5 aspect-135/74 bg-fg transition-colors group-hover:bg-accent-fg"
-          />
-        </Link>
+      <div className="fixed inset-x-0 top-0 z-50 bg-bg border-b border-line">
+        <div className="max-w-290 mx-auto h-16 px-5 flex justify-between items-center gap-3">
+          <Link
+            href="/"
+            aria-label={`${PROFILE.name}, home`}
+            className="group flex items-center gap-3 min-h-11"
+          >
+            <span
+              aria-hidden="true"
+              className="logo-mask block h-5 aspect-135/74 bg-fg transition-colors group-hover:bg-accent-deep"
+            />
+            <span className="hidden sm:inline text-sm text-muted group-hover:text-fg transition-colors">
+              {PROFILE.name.toLowerCase().replace(" ", "-")}
+            </span>
+          </Link>
 
-        <nav aria-label="Main" className={`hidden md:flex gap-1 p-1 rounded-full ${glass}`}>
-          {NAV.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              aria-current={active === n.href.slice(2) ? "location" : undefined}
-              className="text-sm font-medium px-4 py-2 rounded-full text-muted hover:text-fg transition-colors aria-[current=location]:bg-fg aria-[current=location]:text-bg"
+          <nav aria-label="Main" className="hidden md:flex gap-1">
+            {NAV.map((n) => (
+              <Link
+                key={n.href}
+                href={n.href}
+                aria-current={
+                  active === n.href.slice(2) ? "location" : undefined
+                }
+                className="text-sm px-3 py-2 rounded-md text-muted hover:text-fg transition-colors aria-[current=location]:text-accent-deep"
+              >
+                <span className="text-dim">./</span>
+                {n.label.toLowerCase()}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex gap-2 items-center">
+            <a
+              href={NAV[3].href}
+              className="hidden md:inline-flex items-center min-h-10 px-4 rounded-md bg-accent text-on-accent text-sm font-medium transition-colors hover:bg-accent-deep hover:text-white"
             >
-              {n.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex gap-2 items-center">
-          <a
-            href={`mailto:${PROFILE.email}`}
-            className="hidden md:inline-flex items-center min-h-11 px-5 rounded-full bg-accent text-on-accent text-sm font-medium transition hover:-translate-y-0.5"
-          >
-            Let&apos;s talk
-          </a>
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            className={`md:hidden min-h-11 px-4 rounded-full text-sm font-medium ${glass}`}
-          >
-            Menu
-          </button>
+              Let&apos;s talk
+            </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              className={`md:hidden min-h-11 px-4 text-sm ${box}`}
+            >
+              menu
+            </button>
+          </div>
         </div>
       </div>
 
@@ -110,18 +118,19 @@ export const TopBar: React.FC = () => {
             type="button"
             autoFocus
             onClick={() => setMenuOpen(false)}
-            className={`absolute top-3.5 right-3.5 min-h-11 px-4 rounded-full text-sm font-medium ${glass}`}
+            className={`absolute top-2.5 right-5 min-h-11 px-4 text-sm ${box}`}
           >
-            Close
+            close
           </button>
           {NAV.map((n) => (
             <Link
               key={n.href}
               href={n.href}
               onClick={() => setMenuOpen(false)}
-              className="font-semibold text-[clamp(40px,12vw,72px)] leading-[1.1] tracking-[-0.04em] py-1.5 border-b border-line hover:text-accent-fg"
+              className="font-semibold text-[clamp(32px,10vw,56px)] leading-[1.15] tracking-[-0.04em] py-2 border-b border-line hover:text-accent-deep"
             >
-              {n.label}
+              <span className="text-dim">./</span>
+              {n.label.toLowerCase()}
             </Link>
           ))}
         </div>

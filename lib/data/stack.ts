@@ -1,15 +1,20 @@
-import { StagePosition } from "../types";
+import { StackGroup } from "../types";
 
-/**
- * The tech stack as a funk band, laid out like a stage plan seen from above.
- * Back row to front: the rhythm section at the back, the frontline up front.
- */
-export const STAGE: StagePosition[] = [
+/** The tech stack, shown like the output of `tree ~/stack`. */
+export const STACK: StackGroup[] = [
   {
-    id: "bass",
-    instrument: "Bass",
-    category: "Backend & data",
-    part: "The low end you feel more than hear.",
+    dir: "languages",
+    label: "Languages",
+    tools: ["HTML", "CSS", "JavaScript", "TypeScript"],
+  },
+  {
+    dir: "frontend",
+    label: "Frontend",
+    tools: ["React", "Next.js", "Tailwind CSS"],
+  },
+  {
+    dir: "backend",
+    label: "Backend & data",
     tools: [
       "Node.js",
       "Express",
@@ -21,45 +26,19 @@ export const STAGE: StagePosition[] = [
     ],
   },
   {
-    id: "drums",
-    instrument: "Drums",
-    category: "Languages",
-    part: "The backbone everything locks to.",
-    tools: ["HTML", "CSS", "JavaScript", "TypeScript"],
+    dir: "design",
+    label: "Design & motion",
+    tools: ["Figma", "Adobe Illustrator", "Adobe After Effects"],
   },
   {
-    id: "keys",
-    instrument: "Keys",
-    category: "AI",
-    part: "Chords, fills and second opinions.",
-    tools: ["Claude", "ChatGPT", "Gemini", "Mistral"],
-  },
-  {
-    id: "guitar",
-    instrument: "Rhythm guitar",
-    category: "Infra & workflow",
-    part: "Tight, steady, keeps everything moving.",
+    dir: "infra",
+    label: "Infra & workflow",
     tools: ["Git", "GitHub", "Docker", "Vercel", "Google Cloud"],
   },
   {
-    id: "percussion",
-    instrument: "Percussion",
-    category: "Testing & analytics",
-    part: "The small details that make the groove.",
+    dir: "quality",
+    label: "Testing & analytics",
     tools: ["Postman", "SonarQube", "Tag Manager", "Analytics"],
   },
-  {
-    id: "horns",
-    instrument: "Horn section",
-    category: "Design & motion",
-    part: "The stabs and colour people remember.",
-    tools: ["Figma", "Framer", "Framer Motion", "Adobe After Effects"],
-  },
-  {
-    id: "vocals",
-    instrument: "Lead vocals",
-    category: "Frontend",
-    part: "Out front: what everyone sees and hears.",
-    tools: ["React", "Next.js", "Tailwind CSS", "shadcn/ui", "Lucide Icons"],
-  },
+  { dir: "ai", label: "AI", tools: ["Claude", "ChatGPT", "Gemini", "Mistral"] },
 ];

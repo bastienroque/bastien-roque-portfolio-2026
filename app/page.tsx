@@ -6,15 +6,23 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { PROFILE } from "@/lib/data/profile";
 import { SITE_URL } from "@/lib/site";
 
-// Structured data so search engines know who this site is about.
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: PROFILE.name,
   jobTitle: PROFILE.role,
-  knowsAbout: PROFILE.keywords,
+  knowsAbout: [
+    "Full-stack development",
+    "Front-end",
+    "Back-end",
+    "Design",
+    "Motion design",
+  ],
   url: SITE_URL,
-  address: { "@type": "PostalAddress", addressLocality: PROFILE.location.split(",")[0] },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: PROFILE.location.split(",")[0],
+  },
   sameAs: PROFILE.links.map((l) => l.href),
 };
 
@@ -24,7 +32,9 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+        }}
       />
       <HeroSection />
       <main id="main">

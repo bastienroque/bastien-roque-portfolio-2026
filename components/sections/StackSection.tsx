@@ -1,74 +1,46 @@
 import React from "react";
-import { STAGE } from "@/lib/data/stack";
-import { StagePosition } from "@/lib/types";
-import { Eyebrow, Heading, Lead, Section } from "../ui/Section";
+import { STACK } from "@/lib/data/stack";
+import { StackGroup } from "@/lib/types";
+import { Eyebrow, Heading, Section } from "../ui/Section";
 
-const label = "font-mono text-[11px] uppercase tracking-[0.1em] text-muted";
+/** One folder of `tree ~/stack`, with tree-drawing characters before each tool. */
+const Folder: React.FC<{ group: StackGroup }> = ({ group }) => (
+  <li className="bg-surface border border-line rounded-md p-5">
+    <h3 className="flex items-baseline justify-between gap-3">
+      <span className="text-accent-deep font-semibold">{group.dir}/</span>
+      <span className="text-xs text-dim">{group.label}</span>
+    </h3>
+    <ul className="mt-3 text-sm leading-7" aria-label={`${group.label} tools`}>
+      {group.tools.map((tool, i) => (
+        <li key={tool} className="text-fg">
+          <span aria-hidden="true" className="text-dim">
+            {i === group.tools.length - 1 ? "└── " : "├── "}
+          </span>
+          {tool}
+        </li>
+      ))}
+    </ul>
+  </li>
+);
 
-const Position: React.FC<{ pos: StagePosition }> = ({ pos }) => {
-  // The drummer sits on a riser; the singer is out front.
-  const emphasis =
-    pos.id === "drums"
-      ? "bg-[color-mix(in_srgb,var(--text)_5%,var(--surface))]"
-      : pos.id === "vocals"
-        ? "border-accent-fg/60"
-        : "";
-
-  return (
-    <li
-      data-pos={pos.id}
-      className={`bg-surface border border-line rounded-2xl p-5 flex flex-col gap-2 ${emphasis}`}
-    >
-      <span className={`${label} flex items-center gap-2`}>
-        <i className="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true" />
-        {pos.instrument}
-        {pos.id === "drums" && (
-          <span className="opacity-70">· on the riser</span>
-        )}
-      </span>
-      <h3 className="text-xl font-semibold tracking-tight">{pos.category}</h3>
-      <p className="text-sm text-muted">{pos.part}</p>
-      <ul
-        className="flex flex-wrap gap-1.5 mt-1.5"
-        aria-label={`${pos.category} tools`}
-      >
-        {pos.tools.map((t) => (
-          <li
-            key={t}
-            className="text-sm font-medium rounded-lg border border-line px-2.5 py-1 bg-bg"
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
-    </li>
-  );
-};
+const toolCount = STACK.reduce((n, g) => n + g.tools.length, 0);
 
 export const StackSection: React.FC = () => (
   <Section id="stack">
-    <Eyebrow>Tech stack</Eyebrow>
-    <Heading>The band.</Heading>
-    <Lead>
-      My stack as a funk band on stage: the rhythm section keeps time at the
-      back, the frontline delivers out front, and every tool has its part.
-    </Lead>
+    <Eyebrow>stack</Eyebrow>
+    <Heading>Tech stack</Heading>
+    <p className="mt-4 text-sm text-dim">
+      <span className="text-accent-deep">$</span> tree ~/stack
+    </p>
 
-    <figure className="mt-10 rounded-card border border-line bg-[color-mix(in_srgb,var(--text)_3%,var(--background))] p-3 md:p-5">
-      <div className={`${label} text-center pb-3`}>Back stage</div>
-      <ol
-        className="stage-plan grid gap-3"
-        aria-label="Stage plan, back to front"
-      >
-        {STAGE.map((pos) => (
-          <Position key={pos.id} pos={pos} />
-        ))}
-      </ol>
-      <figcaption
-        className={`${label} text-center pt-4 mt-3 border-t border-dashed border-line`}
-      >
-        Front stage · Audience
-      </figcaption>
-    </figure>
+    <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-label="Tech stack by category">
+      {STACK.map((g) => (
+        <Folder key={g.dir} group={g} />
+      ))}
+    </ol>
+
+    <p className="mt-4 text-xs text-dim">
+      {STACK.length} directories, {toolCount} tools
+    </p>
   </Section>
 );

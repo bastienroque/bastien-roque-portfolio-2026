@@ -3,14 +3,11 @@
 export interface Profile {
   name: string;
   initials: string;
-  /** Job title, used in metadata and structured data. */
+  /** Job title: the hero title, metadata and structured data. */
   role: string;
-  /** The one-line positioning shown in the hero. */
-  tagline: string;
-  /** Skills shown as keywords around the site. */
-  keywords: string[];
   location: string;
-  status: string;
+  /** IANA time zone for the local clock, e.g. "Europe/Lisbon". */
+  timeZone: string;
   email: string;
   links: { label: string; href: string }[];
 }
@@ -42,15 +39,12 @@ export interface Project {
   media: ProjectMedia[];
   liveUrl: string;
   repoUrl: string;
-  color: string;
 }
 
-/** One position on the funk band stage plan: a stack category and its tools. */
-export interface StagePosition {
-  id: "drums" | "bass" | "keys" | "guitar" | "percussion" | "horns" | "vocals";
-  instrument: string;
-  category: string;
-  /** Why this category plays this part. */
-  part: string;
+/** One folder in the stack tree: a category and its tools. */
+export interface StackGroup {
+  /** Folder name, e.g. "frontend". */
+  dir: string;
+  label: string;
   tools: string[];
 }

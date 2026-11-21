@@ -2,31 +2,24 @@ import React from "react";
 import Link from "next/link";
 import { Project } from "@/lib/types";
 import { Video } from "../ui/Video";
-import { DisciplineTags } from "../ui/DisciplineTags";
 
 export const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
   <Link
     href={`/projects/${project.slug}`}
-    className="group bg-surface text-fg border border-line rounded-card shadow-card overflow-hidden flex flex-col transition duration-300 hover:-translate-y-1.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-fg"
+    className="group bg-surface text-fg border border-line rounded-md overflow-hidden flex flex-col transition-colors duration-200 hover:border-accent-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-deep"
   >
-    <div
-      className="relative aspect-16/10 m-2 rounded-[calc(var(--radius)-8px)] overflow-hidden"
-      style={{ backgroundColor: project.color }}
-    >
+    <div className="relative aspect-16/10 border-b border-line bg-bg overflow-hidden">
       <Video {...project.cover} className="transition-transform duration-500 group-hover:scale-[1.03]" />
     </div>
-    <div className="p-[14px_22px_22px] flex flex-col flex-1">
-      <div className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
-        {project.kind} · {project.year}
+    <div className="p-5 flex flex-col flex-1">
+      <div className="text-xs text-dim">
+        {project.kind.toLowerCase()} <span className="text-line">·</span> {project.year}
       </div>
-      <h3 className="text-[28px] font-semibold tracking-tight mt-1.5 leading-none">{project.title}</h3>
-      <p className="text-[15px] text-muted mt-2 mb-4 flex-1">{project.tagline}</p>
-      <div className="flex items-end justify-between gap-3">
-        <DisciplineTags items={project.disciplines} />
-        <span className="shrink-0 font-medium text-sm text-accent-fg group-hover:underline underline-offset-4">
-          Case study →
-        </span>
-      </div>
+      <h3 className="text-2xl font-semibold tracking-[-0.03em] mt-2 leading-tight">{project.title}</h3>
+      <p className="text-sm leading-relaxed text-muted mt-2 mb-5 flex-1">{project.tagline}</p>
+      <span className="text-sm text-accent-deep">
+        <span className="group-hover:underline underline-offset-4">read case study</span> →
+      </span>
     </div>
   </Link>
 );
